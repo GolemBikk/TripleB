@@ -1,0 +1,62 @@
+﻿#side_container {
+    background-color: rgba(0,0,0,0.8);
+    height: 100%;
+    width: 20%;
+    
+    float: left;
+    padding: 1%;
+    position: fixed;
+    z-index: 10;
+}
+
+#menu_button {
+    width: 0;
+    margin-right: 5%;
+    float: right;
+}
+
+#menu_button image{
+    height: 50px;
+    width: 50px;
+}
+
+#logotype{
+    margin: 0% 5% 5% 0%;
+}
+
+#logotype a img {
+    width: 100%;    
+}
+
+#navigation_menu {   
+    margin-bottom: 5%;
+}
+
+#registration_menu {
+
+}
+#registration_menu input {
+    width: 95%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.navbar-collapse {
+    padding: 0;
+    overflow-x: visible;
+    -webkit-overflow-scrolling: touch;
+}
+
+.navbar-nav > li {
+    float: left;
+    width: 95%;
+}
+
+.navbar-nav > li > a{
+    padding: 10px;
+}
+
+footer {
+    margin-top: 5%;
+    color: darkorange;
+}

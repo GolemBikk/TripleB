@@ -7,8 +7,8 @@
 -debug:full
 -nostdlib
 -nologo
-"c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\bin\Debug\netcoreapp1.0\BadBoysBoating.dll"
+"D:\Проекты\TripleB\src\BadBoysBoating\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"D:\Проекты\TripleB\src\BadBoysBoating\bin\Debug\netcoreapp1.0\BadBoysBoating.dll"
 -r:"C:\Users\SMOKE\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
 -r:"C:\Users\SMOKE\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll"
 -r:"C:\Users\SMOKE\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.1\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll"
@@ -192,7 +192,7 @@
 -r:"C:\Users\SMOKE\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\SMOKE\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\SMOKE\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\obj\Debug\netcoreapp1.0\BadBoysBoatingdotnet-compile.deps.json",BadBoysBoating.deps.json
-"c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\Program.cs"
-"c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\Startup.cs"
-"c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\Controllers\HomeController.cs"
+-resource:"D:\Проекты\TripleB\src\BadBoysBoating\obj\Debug\netcoreapp1.0\BadBoysBoatingdotnet-compile.deps.json",BadBoysBoating.deps.json
+"D:\Проекты\TripleB\src\BadBoysBoating\Program.cs"
+"D:\Проекты\TripleB\src\BadBoysBoating\Startup.cs"
+"D:\Проекты\TripleB\src\BadBoysBoating\Controllers\HomeController.cs"

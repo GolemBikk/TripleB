@@ -1,5 +1,5 @@
---temp-output:c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\obj\Debug\netcoreapp1.0\
---out:c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\bin\Debug\netcoreapp1.0\BadBoysBoating.dll
+--temp-output:D:\Проекты\TripleB\src\BadBoysBoating\obj\Debug\netcoreapp1.0\
+--out:D:\Проекты\TripleB\src\BadBoysBoating\bin\Debug\netcoreapp1.0\BadBoysBoating.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -196,7 +196,7 @@
 --reference:C:\Users\SMOKE\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\SMOKE\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\SMOKE\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\obj\Debug\netcoreapp1.0\BadBoysBoatingdotnet-compile.deps.json",BadBoysBoating.deps.json
-c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\Program.cs
-c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\Startup.cs
-c:\users\smoke\documents\visual studio 2015\Projects\BadBoysBoating\src\BadBoysBoating\Controllers\HomeController.cs
+--resource:"D:\Проекты\TripleB\src\BadBoysBoating\obj\Debug\netcoreapp1.0\BadBoysBoatingdotnet-compile.deps.json",BadBoysBoating.deps.json
+D:\Проекты\TripleB\src\BadBoysBoating\Program.cs
+D:\Проекты\TripleB\src\BadBoysBoating\Startup.cs
+D:\Проекты\TripleB\src\BadBoysBoating\Controllers\HomeController.cs

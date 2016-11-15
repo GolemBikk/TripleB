@@ -1,0 +1,16 @@
+﻿.content {
+    background-color: rgba(0,0,0,0.8);
+    padding: 2%;
+}
+
+#hello {
+    text-indent: 20px;
+    font-size: 20px;
+    text-align: justify;
+    color: darkorange;
+}
+#news {
+    font-size: 25px;
+    text-align: justify;
+    color: darkorange;
+}
