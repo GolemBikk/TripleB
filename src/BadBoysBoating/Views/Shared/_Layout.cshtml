@@ -21,38 +21,112 @@
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
-    <div>
-        <div id="side_container">
-            <div id="menu_button" class="right carousel-control">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <div id="login_window" class="modal fade dialog_window">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Авторизация</h2>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>Введите свои данные:</p>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Логин</span>
+                        <input type="text" class="form-control" placeholder="Example_11">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Пароль</span>
+                        <input type="password" class="form-control" placeholder="">
+                    </div>
+                    <div>
+                        <p>Авторизирутесь с помощью социальных сетей:</p>
+                        <input type='button' value='Vk' id='vk_register' class='btn' />
+                        <input type='button' value='Fb' id='vk_register' class='btn' />
+                        <input type='button' value='G+' id='vk_register' class='btn' />
+                    </div>  
+                </div>
+                <div class="modal-footer">
+                    <input type='button' value='Войти' id='login' class='btn' />
+                    <input type='button' value='Отмена' class='btn btn-default' data-dismiss='modal' />
+                </div>
             </div>
-            <header>
-                <div id="logotype">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/images/site_logo.jpg" />
-                    </a>
-                </div>
-                <div id="navigation_menu" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="">Мой Кабинет</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="">Новости</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="">Продукция</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="">О нас</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="">Контакты</a></li>
-                    </ul>
-                </div>
-                <div id="registration_menu" class="navbar-collapse collapse">
-                    <input type="button" value="Вход" id="login_button" class="btn btn-primary"/>
-                    <input type="button" value="Выход" id="logout_button" class="btn btn-primary"/>
-                    <input type="button" value="Регистрация" id="register_button" class="btn btn-primary"/>
-                </div>
-            </header>
-            <footer>
-                © 2016 All right reserved.<br>Developed by Iundin Alexander and Velichko Michail
-            </footer>
-        </div>       
+        </div>
     </div>
+    <div id="register_window" class="modal fade dialog_window">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Регистрация</h2>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>Заполните все поля:</p>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Имя и фамилия</span>
+                        <input type="text" class="form-control" placeholder="Иванов Иван">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Логин</span>
+                        <input type="text" class="form-control" placeholder="Example_11">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Пароль</span>
+                        <input type="password" class="form-control" placeholder="">
+                    </div>
+                    <div>
+                        <p>Зарегестрируйтесь с помощью социальных сетей:</p>
+                        <input type='button' value='Vk' id='vk_register' class='btn' />
+                        <input type='button' value='Fb' id='vk_register' class='btn' />
+                        <input type='button' value='G+' id='vk_register' class='btn' />
+                    </div>                 
+                </div>
+                <div class="modal-footer">
+                    <input type='button' value='Зарегистрироваться' id='register' class='btn' />
+                    <input type='button' value='Отмена' class='btn btn-default' data-dismiss='modal' />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="side_container">
+        <div id="menu_button" class="right carousel-control">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </div>
+        <header>
+            <div id="logotype">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/site_logo.jpg" />
+                </a>
+            </div>
+            <div id="navigation_menu" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="">Мой Кабинет</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="">Новости</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="">Продукция</a></li>
+                    <li class="navbar-collapse collapse">
+                        <a id="about_link">О нас</a>
+                        <ul id="about_list" class="nav navbar-nav collapse">
+                            <li><a>История</a></li>
+                            <li><a>Услуги</a></li>
+                            <li><a>Награды</a></li>
+                            <li><a>Отзывы</a></li>
+                        </ul>
+                    </li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="">Контакты</a></li>
+                </ul>
+            </div>
+            <div id="registration_menu" class="navbar-collapse collapse">
+                <input type="button" value="Вход" id="login_button" class="btn btn-primary"/>
+                <input type="button" value="Выход" id="logout_button" class="btn btn-primary"/>
+                <input type="button" value="Регистрация" id="register_button" class="btn btn-primary"/>
+            </div>
+        </header>
+        <footer>
+            © 2016 All right reserved.<br>Developed by Iundin Alexander and Velichko Michail
+        </footer>
+    </div>     
     <div class="content container body-content">
         @RenderBody()
     </div>
