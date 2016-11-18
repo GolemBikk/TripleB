@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/menu.css" />
         <link rel="stylesheet" href="~/css/content.css" />
+        <link rel="stylesheet" href="~/css/about.css" />
+        <link rel="stylesheet" href="~/css/contact.css" />
         <script src="~/js/site.js" type="text/javascript"></script>
     </environment>
     <environment names="Staging,Production">
@@ -108,13 +110,13 @@
                     <li class="navbar-collapse collapse">
                         <a id="about_link">О нас</a>
                         <ul id="about_list" class="nav navbar-nav collapse">
-                            <li><a>История</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="About">История</a></li>
                             <li><a>Услуги</a></li>
                             <li><a>Награды</a></li>
                             <li><a>Отзывы</a></li>
                         </ul>
                     </li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="">Контакты</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Контакты</a></li>
                 </ul>
             </div>
             <div id="registration_menu" class="navbar-collapse collapse">
