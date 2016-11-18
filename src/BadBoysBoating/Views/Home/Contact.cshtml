@@ -1,17 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+<div id="map">
+<h1>Схема проезда</h1>
+</div>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="contacts">
+    <div class="contacts-side">
+        <h2>Наши контакты</h2>
+        <h3>Адреса:</h3>
+        <p>г.Севастополь, ул.Леваневского, д.10</p>
+        <p>г.Севастополь, ул.Симонок 53-а</p>
+        <p>Московская обл., Домодедово, Лунная ул., д.25</p>
+        <p>г.Севастополь, ул.Университетская, д.31</p>
+        <h3>Телефоны:</h3>
+        <p>Михаил: +7 978 709 92 77</p>
+        <p>Александр: +7 978 845 73 67</p>
+    </div>
+    <div class="contacts-map">
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=N3DKhD3tuTTcBzBdNPLLKsxaHhrY5KB6&amp;width=650&amp;height=550&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
+    </div>
+</div>

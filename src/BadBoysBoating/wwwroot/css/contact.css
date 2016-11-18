@@ -1,0 +1,26 @@
+﻿#map {
+    font-size: 30px;
+    text-align: justify;
+    color: darkorange;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.contacts {
+    padding: 10px 10px 114px 10px;
+    overflow: hidden;
+    position:relative;
+    text-align: justify;
+    color: darkorange;
+    margin-bottom: 15px;
+}
+
+.contacts-side {
+    float:left;
+    width:220px;
+}
+
+.contacts-map {
+    float:right;
+    width: 650px;
+}
