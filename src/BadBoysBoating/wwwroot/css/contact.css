@@ -1,12 +1,4 @@
-﻿#map {
-    font-size: 30px;
-    text-align: justify;
-    color: darkorange;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.contacts {
+﻿.contacts {
     padding: 10px 10px 114px 10px;
     overflow: hidden;
     position:relative;
@@ -23,4 +15,12 @@
 .contacts-map {
     float:right;
     width: 650px;
+}
+
+#contact-header {
+    font-size: 30px;
+    text-align: justify;
+    color: darkorange;
+    margin-bottom: 15px;
+    text-align: center;
 }
