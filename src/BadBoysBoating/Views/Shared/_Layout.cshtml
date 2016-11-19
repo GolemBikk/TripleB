@@ -104,9 +104,15 @@
             <div id="navigation_menu" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="">Мой Кабинет</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="">Новости</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="">Продукция</a></li>
+                    <li><a asp-area="" asp-controller="User" asp-action="Index">Мой Кабинет</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="News">Новости</a></li>
+                    <li class="navbar-collapse collapse">
+                        <a id="product_link">Продукция</a>
+                        <ul id="product_list" class="nav navbar-nav collapse">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Sale">Продажа</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Rent">Аренда</a></li>
+                        </ul>
+                    </li>
                     <li class="navbar-collapse collapse">
                         <a id="about_link">О нас</a>
                         <ul id="about_list" class="nav navbar-nav collapse">

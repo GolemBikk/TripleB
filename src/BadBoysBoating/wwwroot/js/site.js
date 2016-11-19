@@ -12,8 +12,13 @@ window.onload = function () {
     $("#register_button").on("click", function () {
         showRegisterWindow();
     });
+
+    $("#product_link").on("click", function () {
+        $("#product_list").collapse('toggle');
+    });
     $("#about_link").on("click", function () {
         $("#about_list").collapse('toggle');
+
     });
     $("#register").on("click", function () {
 

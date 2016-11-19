@@ -13,6 +13,21 @@ namespace BadBoysBoating.Controllers
             return View();
         }
 
+        public IActionResult News()
+        {
+            return View();
+        }
+
+        public IActionResult Rent()
+        {
+            return View();
+        }
+
+        public IActionResult Sale()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
