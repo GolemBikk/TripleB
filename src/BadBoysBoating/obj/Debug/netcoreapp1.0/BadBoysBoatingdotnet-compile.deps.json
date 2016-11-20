@@ -30,7 +30,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+          "Models": "1.0.0"
         },
         "compile": {
           "BadBoysBoating.dll": {}
@@ -2629,6 +2630,14 @@
           "System.Xml.XDocument": "4.0.11",
           "System.Xml.XPath": "4.0.1"
         }
+      },
+      "Models/1.0.0": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "Models.dll": {}
+        }
       }
     },
     ".NETCoreApp,Version=v1.0/": {
@@ -2648,7 +2657,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+          "Models": "1.0.0"
         },
         "runtime": {
           "BadBoysBoating.dll": {}
@@ -5148,6 +5158,14 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "Models/1.0.0": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "runtime": {
+          "Models.dll": {}
+        }
       }
     }
   },
@@ -6116,6 +6134,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-FLhdYJx4331oGovQypQ8JIw2kEmNzCsjVOVYY/16kZTUoquZG85oVn7yUhBE2OZt1yGPSXAL0HTEfzjlbNpM7Q=="
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
