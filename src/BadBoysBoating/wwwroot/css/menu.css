@@ -31,29 +31,6 @@
     margin-bottom: 5%;
 }
 
-#about_link {
-    padding: 10px;
-    position: relative;  
-    color: #337ab7;
-    text-decoration: none;
-}
-
-#about_link li{
-    padding: 10px;
-    position: relative;
-    display: block;
-    color: #337ab7;
-    text-decoration: none;
-}
-
-#about_list {
-
-}
-
-#registration_menu {
-
-}
-
 #registration_menu input {
     width: 95%;
     margin-top: 1%;
@@ -68,22 +45,20 @@
 
 .navbar-nav > li {
     float: left;
-    width: 95%;
+    width: 257px;
 }
 
 .navbar-nav > li > a{
     padding: 10px;
 }
 
-#about_list.navbar-nav > li {
+.list.navbar-nav > li {
     float: left;
-    width: 96%;
 }
 
-#about_list.navbar-nav > li > a {
+.list.navbar-nav > li > a {
     padding: 2px;
     padding-left: 35px;
-    width: 105%;
 }
 
 footer {
