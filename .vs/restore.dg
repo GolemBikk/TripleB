@@ -1,1 +1,7 @@
-#:D:\Проекты\TripleB\src\Business\Business.xproj
+#:D:\Проекты\TripleB\src\BadBoysBoating\GUI.xproj
+D:\Проекты\TripleB\src\BadBoysBoating\GUI.xproj|D:\Проекты\TripleB\src\Business\Business.xproj
+D:\Проекты\TripleB\src\BadBoysBoating\GUI.xproj|D:\Проекты\TripleB\src\ViewModels\ViewModels.xproj
+D:\Проекты\TripleB\src\Business\Business.xproj|D:\Проекты\TripleB\src\DB\DB.xproj
+D:\Проекты\TripleB\src\Business\Business.xproj|D:\Проекты\TripleB\src\ViewModels\ViewModels.xproj
+D:\Проекты\TripleB\src\DB\DB.xproj|D:\Проекты\TripleB\src\Models\Models.xproj
+D:\Проекты\TripleB\src\DB\DB.xproj|D:\Проекты\TripleB\src\ViewModels\ViewModels.xproj

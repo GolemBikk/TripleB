@@ -1067,6 +1067,47 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "DB/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Models": "1.0.0",
+          "NETStandard.Library": "1.6.0",
+          "ViewModels": "1.0.0"
+        },
+        "compile": {
+          "netstandard1.6/DB.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/DB.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/Models.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/Models.dll": {}
+        }
+      },
+      "ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/ViewModels.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/ViewModels.dll": {}
+        }
       }
     }
   },
@@ -4013,11 +4054,28 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "DB/1.0.0": {
+      "type": "project",
+      "path": "../DB/project.json",
+      "msbuildProject": "../DB/DB.xproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../Models/project.json",
+      "msbuildProject": "../Models/Models.xproj"
+    },
+    "ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../ViewModels/project.json",
+      "msbuildProject": "../ViewModels/ViewModels.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
-      "NETStandard.Library >= 1.6.0"
+      "DB >= 1.0.0-*",
+      "NETStandard.Library >= 1.6.0",
+      "ViewModels >= 1.0.0-*"
     ],
     ".NETStandard,Version=v1.6": []
   },
