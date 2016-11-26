@@ -1,0 +1,28 @@
+﻿.news_header {
+    width: 100%;
+    color:darkorange;
+    font-size: 30px;
+    text-align:center;
+}
+
+.news_text {
+    color:darkorange;
+    width: 100%;
+    font-size: 15px;
+}
+
+.news_text_header {
+    color:darkorange;
+    width:100%;
+}
+
+.news_data {
+    color:darkorange;
+    width:100%;
+    text-align:right;
+}
+
+.news_content {
+    height:100%;
+    padding-bottom:100%;
+}

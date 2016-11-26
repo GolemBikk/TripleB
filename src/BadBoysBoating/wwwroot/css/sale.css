@@ -1,0 +1,40 @@
+﻿.sale_header {
+    width: 100%;
+    color:darkorange;
+    font-size: 30px;
+    text-align:center;
+}
+
+.sale_row {
+    width:300px;
+}
+
+.sale_text {
+    color:darkorange;
+    width: 100%;
+    font-size: 15px;
+}
+
+.sale_text_header {
+    color:darkorange;
+    width:100%;
+}
+
+.sale_data {
+    color:darkorange;
+    width:100%;
+    text-align:right;
+}
+
+.sale_content {
+    height:100%;
+    padding-bottom:100%;
+}
+
+.caption p {
+    height: 70px;
+}
+
+.caption p.button_group {
+    height: auto;
+}
