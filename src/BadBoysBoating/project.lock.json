@@ -3872,6 +3872,33 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "ViewModels": "1.0.0"
+        },
+        "compile": {
+          "netstandard1.6/Business.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/Business.dll": {}
+        }
+      },
+      "ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/ViewModels.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/ViewModels.dll": {}
+        }
       }
     }
   },
@@ -9984,10 +10011,21 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "Business/1.0.0": {
+      "type": "project",
+      "path": "../Business/project.json",
+      "msbuildProject": "../Business/Business.xproj"
+    },
+    "ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../ViewModels/project.json",
+      "msbuildProject": "../ViewModels/ViewModels.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
+      "Business >= 1.0.0-*",
       "Microsoft.ApplicationInsights.AspNetCore >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics >= 1.0.0",
       "Microsoft.AspNetCore.Mvc >= 1.0.1",
@@ -10003,7 +10041,8 @@
       "Microsoft.Extensions.Logging.Debug >= 1.0.0",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.1",
-      "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0"
+      "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0",
+      "ViewModels >= 1.0.0-*"
     ],
     ".NETCoreApp,Version=v1.0": []
   },
