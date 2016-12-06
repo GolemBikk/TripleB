@@ -1,30 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class BoatModel : IEquatable<BoatModel>
+    public class BoatModel
     {
-        public int ID { get; set; }
+        /// <summary>
+        /// Primary key
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
        
-        public string length { get; set; }
+        /// <summary>
+        /// Длина лодки
+        /// </summary>
+        public string Length { get; set; }
 
-        public string height { get; set; }
+        /// <summary>
+        /// Высота лодки
+        /// </summary>
+        public string Height { get; set; }
 
-        public string width { get; set; }
+        /// <summary>
+        /// Ширина лодки
+        /// </summary>
+        public string Width { get; set; }
 
-        public Manufacturer manufacturer { get; set; }
+        /// <summary>
+        /// Производитель модели.
+        /// </summary>
+        public string ManufacturerName { get; set; }
 
-        public override string ToString()
-        {
-            return String.Format("ID: {0}, length: {1}, height: {2}, width: {3}", ID, length, height, width);
-        }
-
-        public bool Equals(BoatModel other)
-        {
-            return this.ID == other.ID;
-        }
+        public ICollection<Boat> Boats { get; set; }
     }
 }

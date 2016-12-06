@@ -1,42 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class Boat : IEquatable<Boat>
+    public class Boat
     {
-        public int ID { get; set; }
+        /// <summary>
+        /// Primary key
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
 
-        public string speed { get; set; }
+        /// <summary>
+        /// Скорость лодки
+        /// </summary>
+        public string Speed { get; set; }
 
-        public string cost { get; set; }
+        /// <summary>
+        /// Стоимость покупки (аренды) лодки
+        /// </summary>
+        public string Cost { get; set; }
 
-        public string description { get; set; }
+        /// <summary>
+        /// Краткое описание лодки
+        /// </summary>
+        public string Description { get; set; }
 
-        public bool status { get; set; }
+        /// <summary>
+        /// Текущий статус (Свободно, продано (арендовано))
+        /// </summary>
+        public string Status { get; set; }
 
-        public DateTime status_from { get; set; }
+        /// <summary>
+        /// Тип лодки (Катер, Яхта)
+        /// </summary>
+        public string BoatType { get; set; } 
 
-        public DateTime status_to { get; set; }
+        /// <summary>
+        /// Модель лодки. Foreign key
+        /// </summary>
+        public int ModelId { get; set; }
+        [ForeignKey("ModelId")]
+        public BoatModel Model { get; set; }
 
-        public Account status_client { get; set; }
+        /// <summary>
+        /// Владелец лодки. Foreign key
+        /// </summary>
+        public int OwnerId { get; set; }
+        [ForeignKey("OwnerId")]
+        public Account Account { get; set; }
 
-        public BoatType type { get; set; }
-
-        public BoatModel model { get; set; }
-
-        public Account owner { get; set; }
-
-        public override string ToString()
-        {
-            return String.Format("ID: {0}, speed: {1}, cost: {2}, status: {3}", ID, speed, cost, status);
-        }
-
-        public bool Equals(Boat other)
-        {
-            return this.ID == other.ID;
-        }
+        public ICollection<Recall> Recalls { get; set; }
     }
 }

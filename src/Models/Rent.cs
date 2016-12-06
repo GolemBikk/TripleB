@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Recall
+    public class Rent
     {
         /// <summary>
         /// Primary key
@@ -13,19 +16,24 @@ namespace Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Дата подачи
+        /// Время начала аренды
         /// </summary>
-        public DateTime Date { get; set; }
+        public DateTime From { get; set; }
 
         /// <summary>
-        /// Заинтересованное лицо
+        /// Время конца аренды
+        /// </summary>
+        public DateTime To { get; set; }
+
+        /// <summary>
+        /// Арендатор лодки. Foreign key
         /// </summary>
         public int ClientId { get; set; }
         [ForeignKey("ClientId")]
-        public Account Client { get; set; }
+        public virtual Account Account { get; set; }
 
         /// <summary>
-        /// Интересующая лодка
+        /// Арендуемая лодка. Foreign key
         /// </summary>
         public int BoatId { get; set; }
         [ForeignKey("BoatId")]

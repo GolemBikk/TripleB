@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "DB": "1.0.0-*",
+    "Models": "1.0.0-*",
     "ViewModels": "1.0.0-*"
   }
 }
