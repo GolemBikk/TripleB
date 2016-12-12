@@ -18,17 +18,13 @@ namespace Models
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// Заинтересованное лицо
+        /// Заинтересованное лицо. Foreign key
         /// </summary>
         public int ClientId { get; set; }
-        [ForeignKey("ClientId")]
-        public Account Client { get; set; }
 
         /// <summary>
-        /// Интересующая лодка
+        /// Интересующая лодка. Foreign key
         /// </summary>
         public int BoatId { get; set; }
-        [ForeignKey("BoatId")]
-        public Boat Boat { get; set; }
     }
 }

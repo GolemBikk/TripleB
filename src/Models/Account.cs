@@ -45,20 +45,21 @@ namespace Models
         /// <summary>
         /// Текущий статус аккаунта (Активный, Заблокированный)
         /// </summary>
-        public string Status { get; set; }
+        public bool Status { get; set; }
+
+        /// <summary>
+        /// Счёт пользователя
+        /// </summary>
+        public int Cash { get; set; }
 
         /// <summary>
         /// Тип аккаунта (Админ, Поставщик, Обычный)
         /// </summary>
         public string AccountType { get; set; }
-     
+        
         /// <summary>
-        /// Информация о аренде лодки
+        /// Информация об аренде лодки
         /// </summary>
-        public virtual Rent Rent { get; set; }
-
-        public ICollection<Boat> Boats { get; set; }
-
-        public ICollection<Recall> Recalls { get; set; }
+        public int RentId { get; set; }
     }
 }

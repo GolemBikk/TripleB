@@ -1,40 +1,75 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.Repositories
 {
     public class BoatRepository
     {
-        public BoatRepository()
+        private TripleBDbContext db;
+
+        public BoatRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public Boat Create(Boat boat)
+        /// <summary>
+        /// Добавление лодки в БД
+        /// </summary>
+        /// <param name="boat"></param>
+        public void Create(Boat boat)
         {
-            return null;
+            if (boat != null)
+            {
+                db.Boats.Add(boat);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение лодки из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Boat Read(int id)
         {
-            return null;
+            return db.Boats.FirstOrDefault(x => x.Id == id);
         }
 
-        public Boat Read()
+        /// <summary>
+        /// Получение всех лодок из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Boat> Read()
         {
-            return null;
+            return db.Boats.ToList();
         }
 
-        public Boat Update()
+        /// <summary>
+        /// Обновление данных лодки в БД
+        /// </summary>
+        /// <param name="boat"></param>
+        public void Update(Boat boat)
         {
-            return null;
+            if (boat != null)
+            {
+                db.Boats.Update(boat);
+                db.SaveChanges();
+            }
         }
 
-        public Boat Delete(int id)
+        /// <summary>
+        /// Удаление лодки из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            Boat boat = db.Boats.FirstOrDefault(x => x.Id == id);
+            if (boat != null)
+            {
+                db.Boats.Remove(boat);
+                db.SaveChanges();
+            }
         }
     }
 }

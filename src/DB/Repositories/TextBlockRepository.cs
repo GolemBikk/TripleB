@@ -1,40 +1,75 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.Repositories
 {
     public class TextBlockRepository
     {
-        public TextBlockRepository()
+        private TripleBDbContext db;
+
+        public TextBlockRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public TextBlock Create(TextBlock textblock)
+        /// <summary>
+        /// Добавление текстового блока в БД
+        /// </summary>
+        /// <param name="textblock"></param>
+        public void Create(TextBlock textblock)
         {
-            return null;
+            if (textblock != null)
+            {
+                db.TextBlocks.Add(textblock);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение текстового блока из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public TextBlock Read(int id)
         {
-            return null;
+            return db.TextBlocks.FirstOrDefault(x => x.Id == id);
         }
 
-        public TextBlock Read()
+        /// <summary>
+        /// Получение всех текстовых блоков из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TextBlock> Read()
         {
-            return null;
+            return db.TextBlocks.ToList();
         }
 
-        public TextBlock Update()
+        /// <summary>
+        /// Обновление данных текстового блока в БД
+        /// </summary>
+        /// <param name="textblock"></param>
+        public void Update(TextBlock textblock)
         {
-            return null;
+            if (textblock != null)
+            {
+                db.TextBlocks.Update(textblock);
+                db.SaveChanges();
+            }
         }
 
-        public TextBlock Delete(int id)
+        /// <summary>
+        /// Удаление текстового блока из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            TextBlock textblock = db.TextBlocks.FirstOrDefault(x => x.Id == id);
+            if (textblock != null)
+            {
+                db.TextBlocks.Remove(textblock);
+                db.SaveChanges();
+            }
         }
     }
 }

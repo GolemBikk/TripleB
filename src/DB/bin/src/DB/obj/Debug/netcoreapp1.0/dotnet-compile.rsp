@@ -160,10 +160,10 @@
 D:\Проекты\TripleB\src\DB\Program.cs
 D:\Проекты\TripleB\src\DB\TripleBDbContext.cs
 D:\Проекты\TripleB\src\DB\TripleBDbContextFactory.cs
-D:\Проекты\TripleB\src\DB\Migrations\20161206172137_Initial.cs
-D:\Проекты\TripleB\src\DB\Migrations\20161206172137_Initial.Designer.cs
-D:\Проекты\TripleB\src\DB\Migrations\20161206180103_First.cs
-D:\Проекты\TripleB\src\DB\Migrations\20161206180103_First.Designer.cs
+D:\Проекты\TripleB\src\DB\Migrations\20161211180456_Initial.cs
+D:\Проекты\TripleB\src\DB\Migrations\20161211180456_Initial.Designer.cs
+D:\Проекты\TripleB\src\DB\Migrations\20161211180659_First.cs
+D:\Проекты\TripleB\src\DB\Migrations\20161211180659_First.Designer.cs
 D:\Проекты\TripleB\src\DB\Migrations\TripleBDbContextModelSnapshot.cs
 D:\Проекты\TripleB\src\DB\Properties\AssemblyInfo.cs
 D:\Проекты\TripleB\src\DB\Repositories\AccountRepository.cs

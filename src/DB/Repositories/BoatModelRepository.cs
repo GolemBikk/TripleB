@@ -1,40 +1,76 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.Repositories
 {
     public class BoatModelRepository
     {
-        public BoatModelRepository()
+        private TripleBDbContext db;
+
+        public BoatModelRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public BoatModel Create(BoatModel boatmodel)
+
+        /// <summary>
+        /// Добавление модели лодки в БД
+        /// </summary>
+        /// <param name="boatmodel"></param>
+        public void Create(BoatModel boatmodel)
         {
-            return null;
+            if (boatmodel != null)
+            {
+                db.BoatModels.Add(boatmodel);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение модели лодки из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BoatModel Read(int id)
         {
-            return null;
+            return db.BoatModels.FirstOrDefault(x => x.Id == id);
         }
 
-        public BoatModel Read()
+        /// <summary>
+        /// Получение всех моделей лодок из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<BoatModel> Read()
         {
-            return null;
+            return db.BoatModels.ToList();
         }
 
-        public BoatModel Update()
+        /// <summary>
+        /// Обновление данных модели лодки в БД
+        /// </summary>
+        /// <param name="boatmodel"></param>
+        public void Update(BoatModel boatmodel)
         {
-            return null;
+            if (boatmodel != null)
+            {
+                db.BoatModels.Update(boatmodel);
+                db.SaveChanges();
+            }
         }
 
-        public BoatModel Delete(int id)
+        /// <summary>
+        /// Удаление модели лодки из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            BoatModel boatmodel = db.BoatModels.FirstOrDefault(x => x.Id == id);
+            if (boatmodel != null)
+            {
+                db.BoatModels.Remove(boatmodel);
+                db.SaveChanges();
+            }
         }
     }
 }

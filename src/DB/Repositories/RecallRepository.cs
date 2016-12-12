@@ -1,40 +1,75 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.Repositories
 {
     public class RecallRepository
     {
-        public RecallRepository()
+        private TripleBDbContext db;
+
+        public RecallRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public Recall Create(Recall recall)
+        /// <summary>
+        /// Добавление заявки в БД
+        /// </summary>
+        /// <param name="recall"></param>
+        public void Create(Recall recall)
         {
-            return null;
+            if (recall != null)
+            {
+                db.Recalls.Add(recall);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение заявки из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Recall Read(int id)
         {
-            return null;
+            return db.Recalls.FirstOrDefault(x => x.Id == id);
         }
 
-        public Recall Read()
+        /// <summary>
+        /// Получение всех заявок из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Recall> Read()
         {
-            return null;
+            return db.Recalls.ToList();
         }
 
-        public Recall Update()
+        /// <summary>
+        /// Обновление данных заявки в БД
+        /// </summary>
+        /// <param name="recall"></param>
+        public void Update(Recall recall)
         {
-            return null;
+            if (recall != null)
+            {
+                db.Recalls.Update(recall);
+                db.SaveChanges();
+            }
         }
 
-        public Recall Delete(int id)
+        /// <summary>
+        /// Удаление заявки из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            Recall recall = db.Recalls.FirstOrDefault(x => x.Id == id);
+            if (recall != null)
+            {
+                db.Recalls.Remove(recall);
+                db.SaveChanges();
+            }
         }
     }
 }

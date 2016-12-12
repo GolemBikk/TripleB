@@ -1,40 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Models;
 
 namespace DB.Repositories
 {
     public class AccountRepository
     {
-        public AccountRepository()
+        private TripleBDbContext db;
+
+        public AccountRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public Account Create(Account account)
+        /// <summary>
+        /// Добавление аккаунта в БД
+        /// </summary>
+        /// <param name="account"></param>
+        public void Create(Account account)
         {
-            return null;
+            if (account != null)
+            {
+                db.Accounts.Add(account);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение аккаунта из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Account Read(int id)
         {
-            return null;
+            return db.Accounts.FirstOrDefault(x => x.Id == id);
         }
 
-        public Account Read()
+        /// <summary>
+        /// Получение всех аккаунтов из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Account> Read()
         {
-            return null;
+            return db.Accounts.ToList();
         }
 
-        public Account Update()
+        /// <summary>
+        /// Обновление данных аккаунта в БД
+        /// </summary>
+        /// <param name="account"></param>
+        public void Update(Account account)
         {
-            return null;
+            if (account != null)
+            {
+                db.Accounts.Update(account);
+                db.SaveChanges();
+            }
         }
 
-        public Account Delete(int id)
+        /// <summary>
+        /// Удаление аккаунта из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            Account account = db.Accounts.FirstOrDefault(x => x.Id == id);
+            if (account != null)
+            {
+                db.Accounts.Remove(account);
+                db.SaveChanges();
+            }
         }
     }
 }

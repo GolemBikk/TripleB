@@ -1,40 +1,75 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.Repositories
 {
     public class NewsRepository
     {
-        public NewsRepository()
+        private TripleBDbContext db;
+
+        public NewsRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public News Create(News boatmodel)
+        /// <summary>
+        /// Добавление новости в БД
+        /// </summary>
+        /// <param name="news"></param>
+        public void Create(News news)
         {
-            return null;
+            if (news != null)
+            {
+                db.News.Add(news);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение новости из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public News Read(int id)
         {
-            return null;
+            return db.News.FirstOrDefault(x => x.Id == id);
         }
 
-        public News Read()
+        /// <summary>
+        /// Получение всех новостей из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<News> Read()
         {
-            return null;
+            return db.News.ToList();
         }
 
-        public News Update()
+        /// <summary>
+        /// Обновление данных новости в БД
+        /// </summary>
+        /// <param name="news"></param>
+        public void Update(News news)
         {
-            return null;
+            if (news != null)
+            {
+                db.News.Update(news);
+                db.SaveChanges();
+            }
         }
 
-        public News Delete(int id)
+        /// <summary>
+        /// Удаление новости из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            News news = db.News.FirstOrDefault(x => x.Id == id);
+            if (news != null)
+            {
+                db.News.Remove(news);
+                db.SaveChanges();
+            }
         }
     }
 }

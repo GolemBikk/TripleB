@@ -15,12 +15,12 @@ namespace Models
         /// <summary>
         /// Скорость лодки
         /// </summary>
-        public string Speed { get; set; }
+        public int Speed { get; set; }
 
         /// <summary>
         /// Стоимость покупки (аренды) лодки
         /// </summary>
-        public string Cost { get; set; }
+        public int Cost { get; set; }
 
         /// <summary>
         /// Краткое описание лодки
@@ -30,27 +30,21 @@ namespace Models
         /// <summary>
         /// Текущий статус (Свободно, продано (арендовано))
         /// </summary>
-        public string Status { get; set; }
+        public bool Status { get; set; }
 
         /// <summary>
         /// Тип лодки (Катер, Яхта)
         /// </summary>
-        public string BoatType { get; set; } 
+        public string BoatType { get; set; }
 
         /// <summary>
         /// Модель лодки. Foreign key
         /// </summary>
         public int ModelId { get; set; }
-        [ForeignKey("ModelId")]
-        public BoatModel Model { get; set; }
 
         /// <summary>
         /// Владелец лодки. Foreign key
         /// </summary>
         public int OwnerId { get; set; }
-        [ForeignKey("OwnerId")]
-        public Account Account { get; set; }
-
-        public ICollection<Recall> Recalls { get; set; }
     }
 }

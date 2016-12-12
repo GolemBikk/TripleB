@@ -1,40 +1,75 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.Repositories
 {
     public class ImageRepository
     {
-        public ImageRepository()
+        private TripleBDbContext db;
+
+        public ImageRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public Image Create(Image image)
+        /// <summary>
+        /// Добавление изображения в БД
+        /// </summary>
+        /// <param name="image"></param>
+        public void Create(Image image)
         {
-            return null;
+            if (image != null)
+            {
+                db.Images.Add(image);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение изображения из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Image Read(int id)
         {
-            return null;
+            return db.Images.FirstOrDefault(x => x.Id == id);
         }
 
-        public Image Read()
+        /// <summary>
+        /// Получение всех изображений из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Image> Read()
         {
-            return null;
+            return db.Images.ToList();
         }
 
-        public Image Update()
+        /// <summary>
+        /// Обновление данных изображения в БД
+        /// </summary>
+        /// <param name="image"></param>
+        public void Update(Image image)
         {
-            return null;
+            if (image != null)
+            {
+                db.Images.Update(image);
+                db.SaveChanges();
+            }
         }
 
-        public Image Delete(int id)
+        /// <summary>
+        /// Удаление изображения из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            Image image = db.Images.FirstOrDefault(x => x.Id == id);
+            if (image != null)
+            {
+                db.Images.Remove(image);
+                db.SaveChanges();
+            }
         }
     }
 }

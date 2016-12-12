@@ -1,40 +1,75 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DB.Repositories
 {
     public class RentRepository
     {
-        public RentRepository()
+        private TripleBDbContext db;
+
+        public RentRepository(TripleBDbContext db)
         {
+            this.db = db;
         }
 
-        public Rent Create(Rent rent)
+        /// <summary>
+        /// Добавление договора аренды в БД
+        /// </summary>
+        /// <param name="rent"></param>
+        public void Create(Rent rent)
         {
-            return null;
+            if (rent != null)
+            {
+                db.Rents.Add(rent);
+                db.SaveChanges();
+            }
         }
 
+        /// <summary>
+        /// Получение договора аренды из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Rent Read(int id)
         {
-            return null;
+            return db.Rents.FirstOrDefault(x => x.Id == id);
         }
 
-        public Rent Read()
+        /// <summary>
+        /// Получение всех договоров аренды из БД
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Rent> Read()
         {
-            return null;
+            return db.Rents.ToList();
         }
 
-        public Rent Update()
+        /// <summary>
+        /// Обновление данных договора аренды в БД
+        /// </summary>
+        /// <param name="rent"></param>
+        public void Update(Rent rent)
         {
-            return null;
+            if (rent != null)
+            {
+                db.Rents.Update(rent);
+                db.SaveChanges();
+            }
         }
 
-        public Rent Delete(int id)
+        /// <summary>
+        /// Удаление договора аренды из БД
+        /// </summary>
+        /// <param name="id"></param>
+        public void Delete(int id)
         {
-            return null;
+            Rent rent = db.Rents.FirstOrDefault(x => x.Id == id);
+            if (rent != null)
+            {
+                db.Rents.Remove(rent);
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ using DB;
 namespace DB.Migrations
 {
     [DbContext(typeof(TripleBDbContext))]
-    [Migration("20161206180103_First")]
-    partial class First
+    [Migration("20161211180456_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,6 +24,8 @@ namespace DB.Migrations
 
                     b.Property<string>("AccountType");
 
+                    b.Property<int>("Cash");
+
                     b.Property<string>("Email");
 
                     b.Property<string>("FirstName");
@@ -34,7 +36,9 @@ namespace DB.Migrations
 
                     b.Property<string>("Password");
 
-                    b.Property<string>("Status");
+                    b.Property<int>("RentId");
+
+                    b.Property<bool>("Status");
 
                     b.Property<string>("Token");
 
@@ -50,7 +54,7 @@ namespace DB.Migrations
 
                     b.Property<string>("BoatType");
 
-                    b.Property<string>("Cost");
+                    b.Property<int>("Cost");
 
                     b.Property<string>("Description");
 
@@ -58,15 +62,11 @@ namespace DB.Migrations
 
                     b.Property<int>("OwnerId");
 
-                    b.Property<string>("Speed");
+                    b.Property<int>("Speed");
 
-                    b.Property<string>("Status");
+                    b.Property<bool>("Status");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ModelId");
-
-                    b.HasIndex("OwnerId");
 
                     b.ToTable("Boats");
                 });
@@ -81,6 +81,8 @@ namespace DB.Migrations
                     b.Property<string>("Length");
 
                     b.Property<string>("ManufacturerName");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("Width");
 
@@ -132,34 +134,7 @@ namespace DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BoatId");
-
-                    b.HasIndex("ClientId");
-
                     b.ToTable("Recalls");
-                });
-
-            modelBuilder.Entity("Models.Rent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BoatId");
-
-                    b.Property<int>("ClientId");
-
-                    b.Property<DateTime>("From");
-
-                    b.Property<DateTime>("To");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BoatId");
-
-                    b.HasIndex("ClientId")
-                        .IsUnique();
-
-                    b.ToTable("Rent");
                 });
 
             modelBuilder.Entity("Models.TextBlock", b =>
@@ -176,39 +151,6 @@ namespace DB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NewsTexts");
-                });
-
-            modelBuilder.Entity("Models.Boat", b =>
-                {
-                    b.HasOne("Models.BoatModel", "Model")
-                        .WithMany("Boats")
-                        .HasForeignKey("ModelId");
-
-                    b.HasOne("Models.Account", "Account")
-                        .WithMany("Boats")
-                        .HasForeignKey("OwnerId");
-                });
-
-            modelBuilder.Entity("Models.Recall", b =>
-                {
-                    b.HasOne("Models.Boat", "Boat")
-                        .WithMany("Recalls")
-                        .HasForeignKey("BoatId");
-
-                    b.HasOne("Models.Account", "Client")
-                        .WithMany("Recalls")
-                        .HasForeignKey("ClientId");
-                });
-
-            modelBuilder.Entity("Models.Rent", b =>
-                {
-                    b.HasOne("Models.Boat", "Boat")
-                        .WithMany()
-                        .HasForeignKey("BoatId");
-
-                    b.HasOne("Models.Account", "Account")
-                        .WithOne("Rent")
-                        .HasForeignKey("Models.Rent", "ClientId");
                 });
         }
     }
