@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Models
 {
-    public class News : IEquatable<News>
+    public class News
     {
-        public int ID { get; set; }
+        /// <summary>
+        /// Primary key
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
 
-        public string title { get; set; }
+        /// <summary>
+        /// Заголовок новости
+        /// </summary>
+        public string Title { get; set; }
 
-        public DateTime date { get; set; }
+        /// <summary>
+        /// Анонс новости
+        /// </summary>
+        public string Preview { get; set; }
 
-        public override string ToString()
-        {
-            return String.Format("ID: {0}, title {1}, date: {2}", ID, title, date.ToString());
-        }
-
-        public bool Equals(News other)
-        {
-            return this.ID == other.ID;
-        }
+        /// <summary>
+        /// Дата публикации
+        /// </summary>
+        public DateTime Date { get; set; }
     }
 }

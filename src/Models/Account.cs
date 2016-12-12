@@ -1,36 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class Account : IEquatable<Account>
+    public class Account
     {
-        public string login { get; set; }
+        /// <summary>
+        /// Primary key
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
 
-        public string password { get; set; }
+        /// <summary>
+        /// Логин аккаунта
+        /// </summary>
+        public string Login { get; set; }
 
-        public string token { get; set; }
+        /// <summary>
+        /// Пароль аккаунта
+        /// </summary>
+        public string Password { get; set; }
 
-        public string first_name { get; set; }
+        /// <summary>
+        /// Токен доступа пользователя, авторизованного через соц. сеть
+        /// </summary>
+        public string Token { get; set; }
 
-        public string last_name { get; set; }
+        /// <summary>
+        /// Имя
+        /// </summary>
+        public string FirstName { get; set; }
 
-        public string email { get; set; }
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        public string LastName { get; set; }
 
-        public AccountType account_type { get; set; }
+        /// <summary>
+        /// Электронный адрес
+        /// </summary>
+        public string Email { get; set; }
 
-        public string status { get; set; }
+        /// <summary>
+        /// Текущий статус аккаунта (Активный, Заблокированный)
+        /// </summary>
+        public bool Status { get; set; }
 
-        public override string ToString()
-        {
-            return String.Format("login: {0}, password: {1}, email: {2}, status: {3}", login, password, email, status);
-        }
+        /// <summary>
+        /// Счёт пользователя
+        /// </summary>
+        public int Cash { get; set; }
 
-        public bool Equals(Account other)
-        {
-            return this.login.Equals(other.login);
-        }
+        /// <summary>
+        /// Тип аккаунта (Админ, Поставщик, Обычный)
+        /// </summary>
+        public string AccountType { get; set; }
+        
+        /// <summary>
+        /// Информация об аренде лодки
+        /// </summary>
+        public int RentId { get; set; }
     }
 }

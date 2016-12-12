@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace DB
 {
-    public class Repository
+    public class Program
     {
+        public static void Main(string[] args)
+        {
+        }
     }
 }

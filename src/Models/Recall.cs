@@ -1,30 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class Recall : IEquatable<Recall>
+    public class Recall
     {
-        public int ID { get; set; }
+        /// <summary>
+        /// Primary key
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
 
-        public string text { get; set; }
+        /// <summary>
+        /// Дата подачи
+        /// </summary>
+        public DateTime Date { get; set; }
 
-        public DateTime date { get; set; }
+        /// <summary>
+        /// Заинтересованное лицо. Foreign key
+        /// </summary>
+        public int ClientId { get; set; }
 
-        public Account owner { get; set; }
-
-        public int destination_id { get; set; }
-
-        public override string ToString()
-        {
-            return String.Format("ID: {0}, text: {1}, date: {2}, dastination_id: {3}", ID, text, date.ToString(), destination_id);
-        }
-
-        public bool Equals(Recall other)
-        {
-            return this.ID == other.ID;
-        }
+        /// <summary>
+        /// Интересующая лодка. Foreign key
+        /// </summary>
+        public int BoatId { get; set; }
     }
 }
