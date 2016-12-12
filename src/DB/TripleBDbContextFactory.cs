@@ -11,9 +11,10 @@ namespace DB
     {
         public TripleBDbContext Create(DbContextFactoryOptions options)
         {
-            var builder = new DbContextOptionsBuilder<TripleBDbContext>();
-            builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=boatdb;Trusted_Connection=True;MultipleActiveResultSets=true");
-            return new TripleBDbContext(builder.Options);
+            //var builder = new DbContextOptionsBuilder<TripleBDbContext>();
+            //builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=boatdb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            //return new TripleBDbContext(builder.Options);
+            throw new ArgumentNullException();
         }
     }
 }
