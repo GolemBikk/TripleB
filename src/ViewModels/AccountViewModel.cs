@@ -25,7 +25,7 @@ namespace ViewModels
         /// <summary>
         /// Статус пользователя (Активен, Заблокирован
         /// </summary>
-        public string Status { get; set; }
+        public bool Status { get; set; }
 
         /// <summary>
         /// Списко лодок пользователя

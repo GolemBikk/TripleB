@@ -18,7 +18,7 @@ namespace ViewModels
         public String Title { get; set; }
 
         /// <summary>
-        /// Описание новости
+        /// Краткое описание новости
         /// </summary>
         public String Discription { get; set; }
 
