@@ -21,7 +21,7 @@ namespace DB.Repositories
         {
             if (textblock != null)
             {
-                db.TextBlocks.Add(textblock);
+                db.NewsTexts.Add(textblock);
                 db.SaveChanges();
             }
         }
@@ -33,7 +33,7 @@ namespace DB.Repositories
         /// <returns></returns>
         public TextBlock Read(int id)
         {
-            return db.TextBlocks.FirstOrDefault(x => x.Id == id);
+            return db.NewsTexts.FirstOrDefault(x => x.Id == id);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace DB.Repositories
         /// <returns></returns>
         public IEnumerable<TextBlock> Read()
         {
-            return db.TextBlocks.ToList();
+            return db.NewsTexts.ToList();
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace DB.Repositories
         {
             if (textblock != null)
             {
-                db.TextBlocks.Update(textblock);
+                db.NewsTexts.Update(textblock);
                 db.SaveChanges();
             }
         }
@@ -64,10 +64,10 @@ namespace DB.Repositories
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            TextBlock textblock = db.TextBlocks.FirstOrDefault(x => x.Id == id);
+            TextBlock textblock = db.NewsTexts.FirstOrDefault(x => x.Id == id);
             if (textblock != null)
             {
-                db.TextBlocks.Remove(textblock);
+                db.NewsTexts.Remove(textblock);
                 db.SaveChanges();
             }
         }

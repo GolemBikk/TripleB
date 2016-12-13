@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ViewModels;
+using Business;
 
 namespace BadBoysBoating
 {
@@ -61,12 +63,47 @@ namespace BadBoysBoating
 
             app.UseStaticFiles();
 
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = "Cookies",
+                LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            DatabaseInitialization();
+        }
+
+        /// <summary>
+        /// Инициализации БД
+        /// </summary>
+        private void DatabaseInitialization()
+        {
+            AccountViewModel admin1 = new AccountViewModel
+            {
+                Login = "chiron",
+                Username = "Alexander Iundin",
+                Email = "dorian.adret@gmail.com",
+                Status = true,
+                AccountType = "admin"
+            },
+            admin2 = new AccountViewModel
+            {
+                Login = "varian",
+                Username = "Michael Velichko",
+                Email = "varian913@gmail.com",
+                Status = true,
+                AccountType = "admin"
+            };
+            AuthorizationService service = new AuthorizationService();
+            service.RegisterNewAccount(admin1);
+            service.RegisterNewAccount(admin2);
         }
     }
 }
