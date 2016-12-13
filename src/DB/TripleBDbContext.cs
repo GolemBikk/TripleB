@@ -16,8 +16,8 @@ namespace DB
         public DbSet<Rent> Rents { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server = (localdb)\\mssqllocaldb; Database = boatdb; Trusted_Connection = True; MultipleActiveResultSets = true");
+        {        
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=boatdb;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
     }
 }
