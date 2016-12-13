@@ -8,9 +8,9 @@ namespace DB.Repositories
     {
         private TripleBDbContext db;
 
-        public AccountRepository(TripleBDbContext db)
+        public AccountRepository()
         {
-            this.db = db;
+            db = new TripleBDbContext();
         }
 
         /// <summary>
@@ -27,22 +27,13 @@ namespace DB.Repositories
         }
 
         /// <summary>
-        /// Получение аккаунта из БД по Id
+        /// Получение аккаунта из БД по логину
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Account Read(int id)
+        public Account Read(string login)
         {
-            return db.Accounts.FirstOrDefault(x => x.Id == id);
-        }
-
-        /// <summary>
-        /// Получение всех аккаунтов из БД
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Account> Read()
-        {
-            return db.Accounts.ToList();
+            return db.Accounts.FirstOrDefault(x => x.Login == login);
         }
 
         /// <summary>

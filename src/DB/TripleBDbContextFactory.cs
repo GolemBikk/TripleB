@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -9,6 +6,11 @@ namespace DB
 {
     public class TripleBDbContextFactory : IDbContextFactory<TripleBDbContext>
     {
+        /// <summary>
+        /// Метод, необходимый для использования миграций. Не нужен при дальнейших подключениях
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public TripleBDbContext Create(DbContextFactoryOptions options)
         {
             //var builder = new DbContextOptionsBuilder<TripleBDbContext>();

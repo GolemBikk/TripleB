@@ -15,6 +15,18 @@ namespace DB
         public DbSet<Recall> Recalls { get; set; }     
         public DbSet<Rent> Rents { get; set; }
 
+        ///// <summary>
+        ///// Метод, необходимый для создания БД
+        ///// </summary>
+        ///// <param name="options"></param>
+        //public TripleBDbContext(DbContextOptions<TripleBDbContext> options) : base(options)
+        //{
+        //}
+
+        /// <summary>
+        /// Метод, необходимый для подключения к БД
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {        
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=boatdb;Trusted_Connection=True;MultipleActiveResultSets=true");
