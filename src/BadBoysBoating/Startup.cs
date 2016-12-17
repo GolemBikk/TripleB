@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ViewModels;
 using Business;
+using Microsoft.AspNetCore.Http;
 
 namespace BadBoysBoating
 {
@@ -39,6 +40,7 @@ namespace BadBoysBoating
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,7 +68,9 @@ namespace BadBoysBoating
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationScheme = "Cookies",
-                LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login"),
+                LoginPath = new PathString("/Account/Login"),
+                LogoutPath = new PathString("/Account/Logout"),
+                AccessDeniedPath = new PathString("/AccessDenied"),
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true
             });
@@ -85,20 +89,21 @@ namespace BadBoysBoating
         /// </summary>
         private void DatabaseInitialization()
         {
-            AccountViewModel admin1 = new AccountViewModel
+            RegisterViewModel
+            admin2 = new RegisterViewModel
             {
-                Login = "chiron",
-                Username = "Alexander Iundin",
-                Email = "dorian.adret@gmail.com",
-                Status = true,
+                UserLogin = "varian",
+                Password = "87654321",
+                UserName = "Michael Velichko",
+                Email = "varian913@gmail.com",
                 AccountType = "admin"
             },
-            admin2 = new AccountViewModel
+            admin1 = new RegisterViewModel
             {
-                Login = "varian",
-                Username = "Michael Velichko",
-                Email = "varian913@gmail.com",
-                Status = true,
+                UserLogin = "chiron",
+                Password = "12345678",
+                UserName = "Alexander Iundin",
+                Email = "dorian.adret@gmail.com",
                 AccountType = "admin"
             };
             AuthorizationService service = new AuthorizationService();

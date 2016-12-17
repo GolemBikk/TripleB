@@ -23,7 +23,7 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Business": "1.0.0-*",
-    "ViewModels": "1.0.0-*"
+    "ViewModels": "1.0.0-*",
   },
 
   "tools": {

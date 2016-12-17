@@ -5,7 +5,7 @@
         /// <summary>
         /// Уникальное имя пользователя
         /// </summary>
-        public string Login { get; set; }
+        public string UserLogin { get; set; }
 
         /// <summary>
         /// Пароль аккаунта

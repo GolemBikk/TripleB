@@ -5,12 +5,12 @@
         /// <summary>
         /// Фамилия, Имя пользователя 
         /// </summary>
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         /// <summary>
         /// Уникальное имя пользователя
         /// </summary>
-        public string Login { get; set; }
+        public string UserLogin { get; set; }
 
         /// <summary>
         /// Пароль аккаунта

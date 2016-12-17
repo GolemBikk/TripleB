@@ -22,75 +22,7 @@
     </environment>
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
-<body>
-    <div id="login_window" class="modal fade dialog_window">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Авторизация</h2>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <p>Введите свои данные:</p>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Логин</span>
-                        <input type="text" class="form-control" placeholder="Example_11">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Пароль</span>
-                        <input type="password" class="form-control" placeholder="">
-                    </div>
-                    <div>
-                        <p>Авторизирутесь с помощью социальных сетей:</p>
-                        <input type='button' value='Vk' id='vk_register' class='btn' />
-                        <input type='button' value='Fb' id='vk_register' class='btn' />
-                        <input type='button' value='G+' id='vk_register' class='btn' />
-                    </div>  
-                </div>
-                <div class="modal-footer">
-                    <input type='button' value='Войти' id='login' class='btn' />
-                    <input type='button' value='Отмена' class='btn btn-default' data-dismiss='modal' />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="register_window" class="modal fade dialog_window">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Регистрация</h2>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <p>Заполните все поля:</p>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Имя и фамилия</span>
-                        <input type="text" class="form-control" placeholder="Иванов Иван">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Логин</span>
-                        <input type="text" class="form-control" placeholder="Example_11">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Пароль</span>
-                        <input type="password" class="form-control" placeholder="">
-                    </div>
-                    <div>
-                        <p>Зарегестрируйтесь с помощью социальных сетей:</p>
-                        <input type='button' value='Vk' id='vk_register' class='btn' />
-                        <input type='button' value='Fb' id='vk_register' class='btn' />
-                        <input type='button' value='G+' id='vk_register' class='btn' />
-                    </div>                 
-                </div>
-                <div class="modal-footer">
-                    <input type='button' value='Зарегистрироваться' id='register' class='btn' />
-                    <input type='button' value='Отмена' class='btn btn-default' data-dismiss='modal' />
-                </div>
-            </div>
-        </div>
-    </div>
+<body>       
     <div id="side_container">
         <div id="menu_button" class="right carousel-control">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

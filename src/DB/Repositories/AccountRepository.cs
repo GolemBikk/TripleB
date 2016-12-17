@@ -30,9 +30,19 @@ namespace DB.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Account Read(string login)
+        public Account GetByLogin(string login)
         {
             return db.Accounts.FirstOrDefault(x => x.Login == login);
+        }
+
+        /// <summary>
+        /// Получение аккаунта из БД по электронному адресу
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public Account GetByEmail(string email)
+        {
+            return db.Accounts.FirstOrDefault(x => x.Email == email);
         }
 
         /// <summary>
