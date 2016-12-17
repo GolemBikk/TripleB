@@ -20,22 +20,26 @@ namespace Business
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public int RegisterNewAccount(AccountViewModel data)
+        public int RegisterNewAccount(RegisterViewModel data)
         {
             try
             {
-                if (ContainsAccount(data.Login))
+                if (ContainsLogin(data.UserLogin))
                 {
                     return 1;
+                }
+                if (ContainsEmail(data.Email))
+                {
+                    return 2;
                 }
                 Account new_account = new Account
                 {
                     AccountType = data.AccountType,
-                    Login = data.Login,
+                    Login = data.UserLogin,
                     Password = data.Password,
                     Email = data.Email,
-                    FirstName = data.Username.Split(' ')[0],
-                    LastName = data.Username.Split(' ')[1],
+                    FirstName = data.UserName.Split(' ')[0],
+                    LastName = data.UserName.Split(' ')[1],
                     Status = true,
                     Cash = 0
                 };
@@ -44,7 +48,7 @@ namespace Business
             }
             catch
             {
-                return 2;
+                return 3;
             }
         }
 
@@ -57,7 +61,7 @@ namespace Business
         {
             try
             {              
-                Account result = repository.Read(login);
+                Account result = repository.GetByLogin(login);
                 if (result == null)
                 {
                     return null;
@@ -81,19 +85,25 @@ namespace Business
         /// <summary>
         /// Проверка, верно ли указан пароль
         /// </summary>
-        /// <param name="login"></param>
-        /// <param name="password"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
-        public bool CheckPassword(string login, string password)
+        public int CheckPassword(LoginViewModel data)
         {
-            Account result = repository.Read(login);
+            Account result = repository.GetByLogin(data.UserLogin);
             if (result != null)
             {
-                return result.Password.Equals(password);
+                if (result.Password.Equals(data.Password))
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
             }
             else
             {
-                return false;
+                return 2;
             }
         }
 
@@ -102,9 +112,19 @@ namespace Business
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
-        private bool ContainsAccount(string login)
+        private bool ContainsLogin(string login)
         {
-            return repository.Read(login) != null;
-        }       
+            return repository.GetByLogin(login) != null;
+        }
+
+        /// <summary>
+        /// Проверка наличия аккаунта с заданным электронным адресом
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        private bool ContainsEmail(string email)
+        {
+            return repository.GetByEmail(email) != null;
+        }
     }
 }
