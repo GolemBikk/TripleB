@@ -1,10 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Profile";
 }
+@model AccountViewModel
 <div>
     <h2>Ваша информация</h2>
 </div>
 <div id="profile">
-    <a asp-area="" asp-controller="User" asp-action="Bids">Заявки</a>
-    <a asp-area="" asp-controller="User" asp-action="Products">Мои предложения</a>
+    <p> Имя: @Model.Username</p>
+    <p>
+        Текущий статус: 
+        @if (Model.Status)
+        {
+            <p>Активен</p>
+        }
+        else
+        {
+            <p>Заблокирован</p>
+        }
+    </p>
+    <p> 
+        Логин: @Model.Login
+    </p>
+    <p>Тип аккаунта: @Model.AccountType</p>
+    <p>Адресс: @Model.Email</p>
+    <a asp-area="" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="outbox">Исходящие заявки</a>
+    @if (Model.AccountType.Equals("customer"))
+    {
+        <a asp-area="" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="inbox">Входящие заявки</a>
+        <a asp-area="" asp-controller="User" asp-action="Products">Мои предложения</a>
+    }   
 </div>

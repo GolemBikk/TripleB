@@ -1,9 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Rent";
 }
+@model List<BoatCollectionViewModel>
 <div>
     <h2>Прделожения аренды на текущий момент</h2>
 </div>
 <div id="rents">
-
+    @foreach (BoatCollectionViewModel item in Model)
+    {
+        <ul class="thumbnails">
+            <li class="span4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/300x200" alt="">
+                    <h3>Ярлык миниатюры</h3>
+                    <p>Заголовок миниатюры...</p>
+                </div>
+            </li>
+            ...
+        </ul>
+    }   
 </div>
