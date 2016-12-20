@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Business;
@@ -85,6 +83,21 @@ namespace BadBoysBoating.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AuthorizationService service = new AuthorizationService();
+                service.EditAccount(model);
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                return RedirectToAction("Index", "User");
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.Authentication.SignOutAsync("Cookies");

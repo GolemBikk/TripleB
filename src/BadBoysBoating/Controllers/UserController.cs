@@ -12,20 +12,51 @@ namespace BadBoysBoating.Controllers
 {
     public class UserController : Controller
     {
-        [Authorize(Roles = "customer, client")]
+        private int account_id;
+
+        public UserController()
+        {
+            AuthorizationService service = new AuthorizationService();
+            AccountViewModel account = service.GetAccountInfo(User.Identity.Name);
+            account_id = account.Id;
+        }
+
+        [Authorize(Roles = "admin, customer, client")]
         public IActionResult Index()
         {
-            return View();
+            AuthorizationService service = new AuthorizationService();
+            AccountViewModel account = service.GetAccountInfo(User.Identity.Name);
+            return View(account);
         }
 
-        public IActionResult Bids()
-        {
-            return View();
+        [Authorize(Roles = "customer, client")]
+        public IActionResult Recalls(string recalls_type)
+        {           
+            List<RecallCollectionViewModel> recalls = null;
+            switch (recalls_type)
+            {
+                case "outbox":
+                    {
+                        RecallService r_service = new RecallService();
+                        recalls = r_service.GetOutbox(account_id);
+                    }
+                    break;
+                case "inbox":
+                    {
+                        RecallService r_service = new RecallService();
+                        recalls = r_service.GetInbox(account_id);
+                    }
+                    break;                
+            }
+            return View(recalls);
         }
 
-        public IActionResult Products()
+        [Authorize(Roles = "customer")]
+        public IActionResult Products(int page_num = 1)
         {
-            return View();
+            BoatService service = new BoatService();
+            List<BoatCollectionViewModel> boats = service.GetUsersBoat(new PageInfo { PageNumber = page_num, PageSize = 9}, account_id);
+            return View(boats);
         }
     }
 }
