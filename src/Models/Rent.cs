@@ -25,6 +25,6 @@ namespace Models
         /// <summary>
         /// Арендуемая лодка. Foreign key
         /// </summary>
-        public int BoatId { get; set; }
+        public int RecallId { get; set; }
     }
 }

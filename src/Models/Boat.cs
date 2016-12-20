@@ -28,6 +28,11 @@ namespace Models
         public string Description { get; set; }
 
         /// <summary>
+        /// Вид предоставляемой услуги (покупка, аренда)
+        /// </summary>
+        public string Kind { get; set; }
+
+        /// <summary>
         /// Текущий статус (Свободно, продано (арендовано))
         /// </summary>
         public bool Status { get; set; }

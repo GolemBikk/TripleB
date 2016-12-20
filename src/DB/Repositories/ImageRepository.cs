@@ -6,23 +6,19 @@ namespace DB.Repositories
 {
     public class ImageRepository
     {
-        private TripleBDbContext db;
-
-        public ImageRepository(TripleBDbContext db)
-        {
-            this.db = db;
-        }
-
         /// <summary>
         /// Добавление изображения в БД
         /// </summary>
         /// <param name="image"></param>
         public void Create(Image image)
         {
-            if (image != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Images.Add(image);
-                db.SaveChanges();
+                if (image != null)
+                {
+                    db.Images.Add(image);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -31,18 +27,37 @@ namespace DB.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Image Read(int id)
+        public Image GetById(int id)
         {
-            return db.Images.FirstOrDefault(x => x.Id == id);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Images.FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        /// <summary>
+        /// Получение изображения из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Image GetFirstByOwnerId(int owner_id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Images.Where(x => x.OwnerId == owner_id).FirstOrDefault();
+            }
         }
 
         /// <summary>
         /// Получение всех изображений из БД
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Image> Read()
+        public IEnumerable<Image> GetAllByOwnerId(int owner_id)
         {
-            return db.Images.ToList();
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Images.Where(x => x.OwnerId == owner_id).ToList();
+            }
         }
 
         /// <summary>
@@ -51,10 +66,13 @@ namespace DB.Repositories
         /// <param name="image"></param>
         public void Update(Image image)
         {
-            if (image != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Images.Update(image);
-                db.SaveChanges();
+                if (image != null)
+                {
+                    db.Images.Update(image);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -64,10 +82,28 @@ namespace DB.Repositories
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            Image image = db.Images.FirstOrDefault(x => x.Id == id);
-            if (image != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Images.Remove(image);
+                Image image = db.Images.FirstOrDefault(x => x.Id == id);
+                if (image != null)
+                {
+                    db.Images.Remove(image);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void DeleteByOwnerId(int owner_id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                foreach (Image image in db.Images.Where(x => x.OwnerId == owner_id))
+                {
+                    if (image != null)
+                    {
+                        db.Images.Remove(image);
+                    }
+                }
                 db.SaveChanges();
             }
         }

@@ -5,23 +5,32 @@ namespace DB.Repositories
 {
     public class AccountRepository
     {
-        private TripleBDbContext db;
-
-        public AccountRepository()
-        {
-            db = new TripleBDbContext();
-        }
-
         /// <summary>
         /// Добавление аккаунта в БД
         /// </summary>
         /// <param name="account"></param>
         public void Create(Account account)
         {
-            if (account != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Accounts.Add(account);
-                db.SaveChanges();
+                if (account != null)
+                {
+                    db.Accounts.Add(account);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Получение аккаунта из БД по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Account GetById(int id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Accounts.FirstOrDefault(x => x.Id == id);
             }
         }
 
@@ -32,7 +41,10 @@ namespace DB.Repositories
         /// <returns></returns>
         public Account GetByLogin(string login)
         {
-            return db.Accounts.FirstOrDefault(x => x.Login == login);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Accounts.FirstOrDefault(x => x.Login == login);
+            }
         }
 
         /// <summary>
@@ -42,7 +54,10 @@ namespace DB.Repositories
         /// <returns></returns>
         public Account GetByEmail(string email)
         {
-            return db.Accounts.FirstOrDefault(x => x.Email == email);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Accounts.FirstOrDefault(x => x.Email == email);
+            }
         }
 
         /// <summary>
@@ -51,10 +66,16 @@ namespace DB.Repositories
         /// <param name="account"></param>
         public void Update(Account account)
         {
-            if (account != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Accounts.Update(account);
-                db.SaveChanges();
+                Account old_account = db.Accounts.FirstOrDefault(x => x.Login == account.Login),
+                    new_account = old_account;
+                new_account.Password = account.Password;
+                if (account != null)
+                {
+                    db.Accounts.Update(new_account);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -64,11 +85,14 @@ namespace DB.Repositories
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            Account account = db.Accounts.FirstOrDefault(x => x.Id == id);
-            if (account != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Accounts.Remove(account);
-                db.SaveChanges();
+                Account account = db.Accounts.FirstOrDefault(x => x.Id == id);
+                if (account != null)
+                {
+                    db.Accounts.Remove(account);
+                    db.SaveChanges();
+                }
             }
         }
     }

@@ -6,23 +6,19 @@ namespace DB.Repositories
 {
     public class RentRepository
     {
-        private TripleBDbContext db;
-
-        public RentRepository(TripleBDbContext db)
-        {
-            this.db = db;
-        }
-
         /// <summary>
         /// Добавление договора аренды в БД
         /// </summary>
         /// <param name="rent"></param>
         public void Create(Rent rent)
         {
-            if (rent != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Rents.Add(rent);
-                db.SaveChanges();
+                if (rent != null)
+                {
+                    db.Rents.Add(rent);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -33,7 +29,22 @@ namespace DB.Repositories
         /// <returns></returns>
         public Rent Read(int id)
         {
-            return db.Rents.FirstOrDefault(x => x.Id == id);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Rents.FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        /// <summary>
+        /// Получение всех договоров аренды для указанной лодки
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Rent> GetByOwnerId(int owner_id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Rents.Where(x => x.RecallId == owner_id).ToList();
+            }
         }
 
         /// <summary>
@@ -42,7 +53,10 @@ namespace DB.Repositories
         /// <returns></returns>
         public IEnumerable<Rent> Read()
         {
-            return db.Rents.ToList();
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Rents.ToList();
+            }
         }
 
         /// <summary>
@@ -51,10 +65,13 @@ namespace DB.Repositories
         /// <param name="rent"></param>
         public void Update(Rent rent)
         {
-            if (rent != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Rents.Update(rent);
-                db.SaveChanges();
+                if (rent != null)
+                {
+                    db.Rents.Update(rent);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -64,11 +81,14 @@ namespace DB.Repositories
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            Rent rent = db.Rents.FirstOrDefault(x => x.Id == id);
-            if (rent != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Rents.Remove(rent);
-                db.SaveChanges();
+                Rent rent = db.Rents.FirstOrDefault(x => x.Id == id);
+                if (rent != null)
+                {
+                    db.Rents.Remove(rent);
+                    db.SaveChanges();
+                }
             }
         }
     }
