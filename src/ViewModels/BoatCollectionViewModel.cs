@@ -10,7 +10,7 @@ namespace ViewModels
         /// <summary>
         /// Уникальный номер модели
         /// </summary>
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Модель лодки

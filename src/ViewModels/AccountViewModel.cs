@@ -7,6 +7,7 @@ namespace ViewModels
 {
     public class AccountViewModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// Фамилия, Имя пользователя 
         /// </summary>

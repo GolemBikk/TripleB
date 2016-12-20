@@ -15,27 +15,27 @@ namespace ViewModels
         /// <summary>
         /// Владелец лодки
         /// </summary>
-        public String Owner { get; set; }
+        public int Owner { get; set; }
 
         /// <summary>
         /// Название лодки
         /// </summary>
-        public String BoatModel { get; set; }
+        public string BoatModel { get; set; }
 
         /// <summary>
         /// Фотографии лодки
         /// </summary>
-        public List<Byte[]> Images { get; set; }
+        public List<byte[]> Images { get; set; }
 
         /// <summary>
         /// Полное описание лодки
         /// </summary>
-        public String Discription { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Стоимость лодки
         /// </summary>
-        public int Coast { get; set; }
+        public int Cost { get; set; }
 
         /// <summary>
         /// Крейсерская скорость лодки
@@ -46,6 +46,11 @@ namespace ViewModels
         /// Статус лодки (В наличии/Нет в наличии)
         /// </summary>
         public bool Status { get; set; }
+
+        /// <summary>
+        /// Вид предоставляемой услуги (покупка, аренда)
+        /// </summary>
+        public string Kind { get; set; }
 
         /// <summary>
         /// Тип лодки (Яхта/Катер)
@@ -68,13 +73,13 @@ namespace ViewModels
         public int Displacement { get; set; }
 
         /// <summary>
-        /// Дата начала аренды
+        /// Производитель модели.
         /// </summary>
-        public DateTime StatusFrom { get; set; }
+        public string ManufacturerName { get; set; }      
 
         /// <summary>
-        /// Дата окончания аренды
+        /// Все данные по аренде лодки
         /// </summary>
-        public DateTime StatusTo { get; set; }
+        public List<RentViewModel> Rents { get; set; }
     }
 }

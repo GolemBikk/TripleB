@@ -8,19 +8,19 @@ namespace ViewModels
     public class RecallCollectionViewModel
     {
         /// <summary>
-        /// Уникальный номер зкакза
+        /// Уникальный номер заказа
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
         /// Уникальное имя заказчика
         /// </summary>
-        public String CustomerLogin { get; set; }
+        public string CustomerLogin { get; set; }
 
         /// <summary>
         /// Тип выполняемой операции (Покупка/Аренда)
         /// </summary>
-        public String Operation { get; set; }
+        public string Operation { get; set; }
 
         /// <summary>
         /// Дата поступления заявки
@@ -30,6 +30,6 @@ namespace ViewModels
         /// <summary>
         /// Модель заказываемой лодки
         /// </summary>
-        public String BoatModel { get; set; }
+        public string BoatModel { get; set; }
     }
 }

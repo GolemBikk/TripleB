@@ -22,6 +22,8 @@ namespace ViewModels
         /// </summary>
         public String Discription { get; set; }
 
+        public List<string> Text { get; set; }
+
         /// <summary>
         /// Дата публикации новости
         /// </summary>
