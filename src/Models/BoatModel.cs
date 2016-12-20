@@ -19,17 +19,17 @@ namespace Models
         /// <summary>
         /// Длина лодки
         /// </summary>
-        public string Length { get; set; }
+        public int Length { get; set; }
 
         /// <summary>
         /// Высота лодки
         /// </summary>
-        public string Height { get; set; }
+        public int Displacement { get; set; }
 
         /// <summary>
         /// Ширина лодки
         /// </summary>
-        public string Width { get; set; }
+        public int Width { get; set; }
 
         /// <summary>
         /// Производитель модели.

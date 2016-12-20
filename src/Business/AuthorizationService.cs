@@ -51,7 +51,7 @@ namespace Business
                 return 3;
             }
         }
-
+        
         /// <summary>
         /// Получение информации об аккаунте
         /// </summary>
@@ -68,6 +68,7 @@ namespace Business
                 }
                 AccountViewModel account = new AccountViewModel
                 {
+                    Id = result.Id,
                     Login = result.Login,
                     Username = String.Format("{0} {1}", result.FirstName, result.LastName),
                     Email = result.Email,
@@ -79,6 +80,27 @@ namespace Business
             catch
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Редактирование данных аккаунта
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public int EditAccount(AccountViewModel data)
+        {
+            try
+            {
+                Account new_account = repository.GetById(data.Id);
+                new_account.Login = data.Login;
+                new_account.Password = data.Password;
+                repository.Update(new_account);
+                return 0;
+            }
+            catch
+            {
+                return 1;
             }
         }
 

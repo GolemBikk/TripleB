@@ -70,7 +70,7 @@ namespace BadBoysBoating
                 AuthenticationScheme = "Cookies",
                 LoginPath = new PathString("/Account/Login"),
                 LogoutPath = new PathString("/Account/Logout"),
-                AccessDeniedPath = new PathString("/AccessDenied"),
+                AccessDeniedPath = new PathString("/Home/Index"),
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true
             });
@@ -105,10 +105,28 @@ namespace BadBoysBoating
                 UserName = "Alexander Iundin",
                 Email = "dorian.adret@gmail.com",
                 AccountType = "admin"
+            },
+            user1 = new RegisterViewModel
+            {
+                UserLogin = "user1",
+                Password = "12345678",
+                UserName = "Ivan Ivanov",
+                Email = "petrov1996@gmail.com",
+                AccountType = "client"
+            },
+            user2 = new RegisterViewModel
+            {
+                UserLogin = "user2",
+                Password = "12345678",
+                UserName = "Peter Petrov",
+                Email = "ivanov2808@gmail.com",
+                AccountType = "customer"
             };
             AuthorizationService service = new AuthorizationService();
             service.RegisterNewAccount(admin1);
             service.RegisterNewAccount(admin2);
+            service.RegisterNewAccount(user1);
+            service.RegisterNewAccount(user2);
         }
     }
 }

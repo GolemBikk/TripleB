@@ -6,23 +6,19 @@ namespace DB.Repositories
 {
     public class TextBlockRepository
     {
-        private TripleBDbContext db;
-
-        public TextBlockRepository(TripleBDbContext db)
-        {
-            this.db = db;
-        }
-
         /// <summary>
         /// Добавление текстового блока в БД
         /// </summary>
         /// <param name="textblock"></param>
         public void Create(TextBlock textblock)
         {
-            if (textblock != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.NewsTexts.Add(textblock);
-                db.SaveChanges();
+                if (textblock != null)
+                {
+                    db.NewsTexts.Add(textblock);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -33,16 +29,22 @@ namespace DB.Repositories
         /// <returns></returns>
         public TextBlock Read(int id)
         {
-            return db.NewsTexts.FirstOrDefault(x => x.Id == id);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.NewsTexts.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         /// <summary>
         /// Получение всех текстовых блоков из БД
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<TextBlock> Read()
+        public IEnumerable<TextBlock> GetByOwnerId(int owner_id)
         {
-            return db.NewsTexts.ToList();
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.NewsTexts.Where(x => x.OwnerId == owner_id).ToList();
+            }
         }
 
         /// <summary>
@@ -51,10 +53,13 @@ namespace DB.Repositories
         /// <param name="textblock"></param>
         public void Update(TextBlock textblock)
         {
-            if (textblock != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.NewsTexts.Update(textblock);
-                db.SaveChanges();
+                if (textblock != null)
+                {
+                    db.NewsTexts.Update(textblock);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -64,10 +69,28 @@ namespace DB.Repositories
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            TextBlock textblock = db.NewsTexts.FirstOrDefault(x => x.Id == id);
-            if (textblock != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.NewsTexts.Remove(textblock);
+                TextBlock textblock = db.NewsTexts.FirstOrDefault(x => x.Id == id);
+                if (textblock != null)
+                {
+                    db.NewsTexts.Remove(textblock);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void DeleteByOwnerId(int owner_id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                foreach (TextBlock textblock in db.NewsTexts.Where(x => x.OwnerId == owner_id))
+                {
+                    if (textblock != null)
+                    {
+                        db.NewsTexts.Remove(textblock);                        
+                    }
+                }
                 db.SaveChanges();
             }
         }

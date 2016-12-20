@@ -6,55 +6,85 @@ namespace DB.Repositories
 {
     public class BoatRepository
     {
-        private TripleBDbContext db;
-
-        public BoatRepository(TripleBDbContext db)
-        {
-            this.db = db;
-        }
-
         /// <summary>
         /// Добавление лодки в БД
         /// </summary>
         /// <param name="boat"></param>
-        public void Create(Boat boat)
+        public int Boat_Create(Boat boat)
         {
-            if (boat != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Boats.Add(boat);
-                db.SaveChanges();
+                if (boat != null)
+                {
+                    db.Boats.Add(boat);
+                    db.SaveChanges();
+                }
+                return boat.Id;
             }
         }
-
+       
         /// <summary>
         /// Получение лодки из БД по Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Boat Read(int id)
+        public Boat Boat_GetById(int id)
         {
-            return db.Boats.FirstOrDefault(x => x.Id == id);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Boats.FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        /// <summary>
+        /// Возвращает последнюю лодку из списка
+        /// </summary>
+        /// <returns></returns>
+        public Boat Boat_GetLast()
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Boats.ToList().Last();
+            }
         }
 
         /// <summary>
         /// Получение всех лодок из БД
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Boat> Read()
+        public IEnumerable<Boat> Boat_GetAll(string kind)
         {
-            return db.Boats.ToList();
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Boats.Where(x => x.Kind.Equals(kind)).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Получение лодок из БД для указанного пользователя
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Boat> Boat_GetByUserId(int owner_id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Boats.Where(x => x.OwnerId == owner_id).ToList();
+            }
         }
 
         /// <summary>
         /// Обновление данных лодки в БД
         /// </summary>
         /// <param name="boat"></param>
-        public void Update(Boat boat)
+        public void Boat_Update(Boat boat)
         {
-            if (boat != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Boats.Update(boat);
-                db.SaveChanges();
+                if (boat != null)
+                {
+                    db.Boats.Update(boat);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -62,13 +92,16 @@ namespace DB.Repositories
         /// Удаление лодки из БД
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(int id)
+        public void Boat_Delete(int id)
         {
-            Boat boat = db.Boats.FirstOrDefault(x => x.Id == id);
-            if (boat != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Boats.Remove(boat);
-                db.SaveChanges();
+                Boat boat = db.Boats.FirstOrDefault(x => x.Id == id);
+                if (boat != null)
+                {
+                    db.Boats.Remove(boat);
+                    db.SaveChanges();
+                }
             }
         }
     }

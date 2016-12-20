@@ -6,23 +6,19 @@ namespace DB.Repositories
 {
     public class RecallRepository
     {
-        private TripleBDbContext db;
-
-        public RecallRepository(TripleBDbContext db)
-        {
-            this.db = db;
-        }
-
         /// <summary>
         /// Добавление заявки в БД
         /// </summary>
         /// <param name="recall"></param>
         public void Create(Recall recall)
         {
-            if (recall != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Recalls.Add(recall);
-                db.SaveChanges();
+                if (recall != null)
+                {
+                    db.Recalls.Add(recall);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -33,7 +29,26 @@ namespace DB.Repositories
         /// <returns></returns>
         public Recall Read(int id)
         {
-            return db.Recalls.FirstOrDefault(x => x.Id == id);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Recalls.FirstOrDefault(x => x.Id == id);
+            }
+        }        
+
+        public IEnumerable<Recall> GetAllByBoat(int boat_id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Recalls.Where(x => x.BoatId == boat_id).ToList();
+            }
+        }
+
+        public IEnumerable<Recall> GetAllByClient(int client_id)
+        {
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Recalls.Where(x => x.ClientId == client_id).ToList();
+            }
         }
 
         /// <summary>
@@ -42,7 +57,10 @@ namespace DB.Repositories
         /// <returns></returns>
         public IEnumerable<Recall> Read()
         {
-            return db.Recalls.ToList();
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.Recalls.ToList();
+            }
         }
 
         /// <summary>
@@ -51,10 +69,13 @@ namespace DB.Repositories
         /// <param name="recall"></param>
         public void Update(Recall recall)
         {
-            if (recall != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Recalls.Update(recall);
-                db.SaveChanges();
+                if (recall != null)
+                {
+                    db.Recalls.Update(recall);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -64,11 +85,14 @@ namespace DB.Repositories
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            Recall recall = db.Recalls.FirstOrDefault(x => x.Id == id);
-            if (recall != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.Recalls.Remove(recall);
-                db.SaveChanges();
+                Recall recall = db.Recalls.FirstOrDefault(x => x.Id == id);
+                if (recall != null)
+                {
+                    db.Recalls.Remove(recall);
+                    db.SaveChanges();
+                }
             }
         }
     }

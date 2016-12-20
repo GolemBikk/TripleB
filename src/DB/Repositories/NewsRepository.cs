@@ -6,24 +6,21 @@ namespace DB.Repositories
 {
     public class NewsRepository
     {
-        private TripleBDbContext db;
-
-        public NewsRepository(TripleBDbContext db)
-        {
-            this.db = db;
-        }
-
         /// <summary>
         /// Добавление новости в БД
         /// </summary>
         /// <param name="news"></param>
-        public void Create(News news)
+        public int Create(News news)
         {
-            if (news != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.News.Add(news);
-                db.SaveChanges();
+                if (news != null)
+                {
+                    db.News.Add(news);
+                    db.SaveChanges();
+                }
             }
+            return news.Id;
         }
 
         /// <summary>
@@ -31,18 +28,24 @@ namespace DB.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public News Read(int id)
+        public News GetById(int id)
         {
-            return db.News.FirstOrDefault(x => x.Id == id);
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.News.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         /// <summary>
         /// Получение всех новостей из БД
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<News> Read()
+        public IEnumerable<News> GetAll()
         {
-            return db.News.ToList();
+            using (TripleBDbContext db = new TripleBDbContext())
+            {
+                return db.News.ToList();
+            }
         }
 
         /// <summary>
@@ -51,10 +54,13 @@ namespace DB.Repositories
         /// <param name="news"></param>
         public void Update(News news)
         {
-            if (news != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.News.Update(news);
-                db.SaveChanges();
+                if (news != null)
+                {
+                    db.News.Update(news);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -64,11 +70,14 @@ namespace DB.Repositories
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            News news = db.News.FirstOrDefault(x => x.Id == id);
-            if (news != null)
+            using (TripleBDbContext db = new TripleBDbContext())
             {
-                db.News.Remove(news);
-                db.SaveChanges();
+                News news = db.News.FirstOrDefault(x => x.Id == id);
+                if (news != null)
+                {
+                    db.News.Remove(news);
+                    db.SaveChanges();
+                }
             }
         }
     }
