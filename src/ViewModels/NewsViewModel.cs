@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace ViewModels
         /// <summary>
         /// Заголовок новсти
         /// </summary>
+        [RegularExpression(@"[A-Z][a-z][А-Я][а-я]", ErrorMessage = "Нет заголовка")]
         public String Title { get; set; }
 
         /// <summary>
