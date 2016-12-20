@@ -23,10 +23,11 @@
     </p>
     <p>Тип аккаунта: @Model.AccountType</p>
     <p>Адресс: @Model.Email</p>
-    <a asp-area="" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="outbox">Исходящие заявки</a>
+    <a asp-area="" class="btn btn-primary" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="outbox">Исходящие заявки</a>
     @if (Model.AccountType.Equals("customer"))
     {
-        <a asp-area="" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="inbox">Входящие заявки</a>
-        <a asp-area="" asp-controller="User" asp-action="Products">Мои предложения</a>
+        <a asp-area="" class="btn btn-primary" asp-controller="Boat" asp-action="Add">Добавить судно</a>
+        <a asp-area="" class="btn btn-primary" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="inbox">Входящие заявки</a>
+        <a asp-area="" class="btn btn-primary" asp-controller="User" asp-action="Products">Мои предложения</a>
     }   
 </div>

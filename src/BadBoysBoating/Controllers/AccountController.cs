@@ -83,7 +83,7 @@ namespace BadBoysBoating.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditProfile(RegisterViewModel model)
+        public async Task<IActionResult> EditProfile(AccountViewModel model)
         {
             if (ModelState.IsValid)
             {

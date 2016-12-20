@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ViewModels;
 
 namespace BadBoysBoating.Controllers
 {
@@ -10,14 +11,14 @@ namespace BadBoysBoating.Controllers
     {
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> AddNews(NewsViewModel nodel)
+        public Task<IActionResult> AddNews(NewsViewModel model)
         {
             throw new Exception();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> EditNews(NewsViewModel nodel)
+        public Task<IActionResult> EditNews(NewsViewModel model)
         {
             throw new Exception();
         }

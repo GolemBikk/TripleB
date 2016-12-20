@@ -10,9 +10,21 @@ namespace BadBoysBoating.Controllers
 {
     public class BoatController : Controller
     {
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddBoat(BoatViewModel model)
+        public async Task<IActionResult> Add(BoatViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -29,7 +41,7 @@ namespace BadBoysBoating.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditBoat(BoatViewModel model)
+        public async Task<IActionResult> Edit(BoatViewModel model)
         {
             if (ModelState.IsValid)
             {

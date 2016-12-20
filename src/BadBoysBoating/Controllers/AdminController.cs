@@ -34,7 +34,7 @@ namespace BadBoysBoating.Controllers
         public IActionResult EditNews(int id)
         {
             NewsService service = new NewsService();
-            NewsViewModel news = service.GetNews(id);
+            NewsViewModel news = service.GetNewsInfo(id);
             return View(news);
         }       
     }
