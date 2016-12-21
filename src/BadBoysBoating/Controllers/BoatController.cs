@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Business;
 using ViewModels;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Text;
 
 namespace BadBoysBoating.Controllers
 {
@@ -24,12 +27,21 @@ namespace BadBoysBoating.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add(BoatViewModel model)
+        public async Task<IActionResult> Add(ICollection<IFormFile> files, BoatViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && files.Count > 0)
             {
                 BoatService service = new BoatService();
-                service.AddBoat(model);
+                int boat_id = service.AddBoat(model);
+                foreach (IFormFile file in files)
+                {
+                    if (file.Length > 0)
+                    {
+                        byte[] CoverImageBytes = null;
+                        BinaryReader reader = new BinaryReader(file.OpenReadStream());
+                        CoverImageBytes = reader.ReadBytes((int)file.Length);
+                    }
+                }
                 return RedirectToAction("Products", "User");
             }
             else

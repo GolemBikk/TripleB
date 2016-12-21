@@ -14,13 +14,6 @@ namespace BadBoysBoating.Controllers
     {
         private int account_id;
 
-        public UserController()
-        {
-            AuthorizationService service = new AuthorizationService();
-            AccountViewModel account = service.GetAccountInfo(User.Identity.Name);
-            account_id = account.Id;
-        }
-
         [Authorize(Roles = "admin, customer, client")]
         public IActionResult Index()
         {
@@ -31,7 +24,8 @@ namespace BadBoysBoating.Controllers
 
         [Authorize(Roles = "customer, client")]
         public IActionResult Recalls(string recalls_type)
-        {           
+        {
+            InitializeAccountId();
             List<RecallCollectionViewModel> recalls = null;
             switch (recalls_type)
             {
@@ -54,9 +48,17 @@ namespace BadBoysBoating.Controllers
         [Authorize(Roles = "customer")]
         public IActionResult Products(int page_num = 1)
         {
+            InitializeAccountId();
             BoatService service = new BoatService();
             List<BoatCollectionViewModel> boats = service.GetUsersBoat(new PageInfo { PageNumber = page_num, PageSize = 9}, account_id);
             return View(boats);
+        }
+
+        private void InitializeAccountId()
+        {
+            AuthorizationService service = new AuthorizationService();
+            AccountViewModel account = service.GetAccountInfo(User.Identity.Name);
+            account_id = account.Id;
         }
     }
 }
