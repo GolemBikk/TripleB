@@ -80,6 +80,10 @@ namespace DB.Repositories
             }
         }
 
+        /// <summary>
+        /// Удалить все данные по указанному пользователю
+        /// </summary>
+        /// <param name="owner_id"></param>
         public void DeleteByOwnerId(int owner_id)
         {
             using (TripleBDbContext db = new TripleBDbContext())
@@ -88,7 +92,7 @@ namespace DB.Repositories
                 {
                     if (textblock != null)
                     {
-                        db.NewsTexts.Remove(textblock);                        
+                        db.NewsTexts.Remove(textblock);
                     }
                 }
                 db.SaveChanges();

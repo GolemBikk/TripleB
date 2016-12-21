@@ -56,7 +56,8 @@ namespace DB.Repositories
         {
             using (TripleBDbContext db = new TripleBDbContext())
             {
-                return db.Images.Where(x => x.OwnerId == owner_id).ToList();
+                var result = db.Images.Where(x => x.OwnerId == owner_id).ToList();
+                return result;
             }
         }
 
@@ -95,17 +96,17 @@ namespace DB.Repositories
 
         public void DeleteByOwnerId(int owner_id)
         {
-            using (TripleBDbContext db = new TripleBDbContext())
-            {
-                foreach (Image image in db.Images.Where(x => x.OwnerId == owner_id))
-                {
-                    if (image != null)
-                    {
-                        db.Images.Remove(image);
-                    }
-                }
-                db.SaveChanges();
-            }
+            //using (TripleBDbContext db = new TripleBDbContext())
+            //{
+            //    foreach (Image image in db.Images.Where(x => x.OwnerId == owner_id))
+            //    {
+            //        if (image != null)
+            //        {
+            //            db.Images.Remove(image);
+            //        }
+            //    }
+            //    db.SaveChanges();
+            //}
         }
     }
 }

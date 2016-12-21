@@ -46,6 +46,6 @@ namespace ViewModels
         /// <summary>
         /// Список заявок пользователя
         /// </summary>
-        public List<RecallCollectionViewModel> Recalls { get; set; }
+        public List<MessageCollectionViewModel> Recalls { get; set; }
     }
 }

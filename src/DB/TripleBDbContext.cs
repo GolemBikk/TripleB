@@ -12,7 +12,7 @@ namespace DB
         public DbSet<Image> Images { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<TextBlock> NewsTexts { get; set; }
-        public DbSet<Recall> Recalls { get; set; }     
+        public DbSet<Message> Messages { get; set; }     
         public DbSet<Rent> Rents { get; set; }
 
         ///// <summary>
@@ -28,7 +28,7 @@ namespace DB
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {        
+        {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=boatdb;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
     }

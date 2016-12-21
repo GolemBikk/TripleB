@@ -22,7 +22,7 @@ namespace DB.Repositories
                 return boat.Id;
             }
         }
-       
+
         /// <summary>
         /// Получение лодки из БД по Id
         /// </summary>

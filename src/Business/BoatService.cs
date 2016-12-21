@@ -240,11 +240,13 @@ namespace Business
             List<BoatCollectionViewModel> result = new List<BoatCollectionViewModel>();
             foreach (Boat item in b_repository.Boat_GetByUserId(owner_id))
             {
+                string model_name = bm_repository.GetById(item.ModelId).Name;
+                var images = i_repository.GetAllByOwnerId(item.Id);
                 result.Add(new BoatCollectionViewModel
                 {
                     Id = item.Id,
-                    BoatModel = bm_repository.GetById(item.ModelId).Name,
-                    Image = i_repository.GetAllByOwnerId(item.Id).First().Content,
+                    BoatModel = model_name,
+                    Image = images.First().Content,
                     Discription = item.Description
                 });
             }

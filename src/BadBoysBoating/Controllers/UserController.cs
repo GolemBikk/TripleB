@@ -26,18 +26,18 @@ namespace BadBoysBoating.Controllers
         public IActionResult Recalls(string recalls_type)
         {
             InitializeAccountId();
-            List<RecallCollectionViewModel> recalls = null;
+            List<MessageCollectionViewModel> recalls = null;
             switch (recalls_type)
             {
                 case "outbox":
                     {
-                        RecallService r_service = new RecallService();
+                        MessageService r_service = new MessageService();
                         recalls = r_service.GetOutbox(account_id);
                     }
                     break;
                 case "inbox":
                     {
-                        RecallService r_service = new RecallService();
+                        MessageService r_service = new MessageService();
                         recalls = r_service.GetInbox(account_id);
                     }
                     break;                

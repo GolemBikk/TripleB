@@ -20,9 +20,11 @@ namespace BadBoysBoating.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            BoatService service = new BoatService();
+            BoatViewModel model = service.GetBoatInfo(id);
+            return View(model);
         }
 
         [HttpPost]
@@ -32,16 +34,18 @@ namespace BadBoysBoating.Controllers
             if (ModelState.IsValid && files.Count > 0)
             {
                 BoatService service = new BoatService();
-                int boat_id = service.AddBoat(model);
+                AuthorizationService a_service = new AuthorizationService();
+                model.Owner = a_service.GetAccountInfo(User.Identity.Name).Id;
+                model.Images = new List<byte[]>();
                 foreach (IFormFile file in files)
                 {
                     if (file.Length > 0)
                     {
-                        byte[] CoverImageBytes = null;
                         BinaryReader reader = new BinaryReader(file.OpenReadStream());
-                        CoverImageBytes = reader.ReadBytes((int)file.Length);
+                        model.Images.Add(reader.ReadBytes((int)file.Length));
                     }
                 }
+                service.AddBoat(model);
                 return RedirectToAction("Products", "User");
             }
             else
@@ -53,12 +57,12 @@ namespace BadBoysBoating.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(BoatViewModel model)
+        public async Task<IActionResult> Edit(ICollection<IFormFile> files, BoatViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && files.Count > 0)
             {
                 BoatService service = new BoatService();
-                service.AddBoat(model);
+                service.EditBoat(model);
                 return RedirectToAction("Products", "User");
             }
             else

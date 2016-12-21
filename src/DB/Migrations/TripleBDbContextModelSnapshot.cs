@@ -57,6 +57,8 @@ namespace DB.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Kind");
+
                     b.Property<int>("ModelId");
 
                     b.Property<int>("OwnerId");
@@ -75,15 +77,15 @@ namespace DB.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Height");
+                    b.Property<int>("Displacement");
 
-                    b.Property<string>("Length");
+                    b.Property<int>("Length");
 
                     b.Property<string>("ManufacturerName");
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Width");
+                    b.Property<int>("Width");
 
                     b.HasKey("Id");
 
@@ -104,6 +106,28 @@ namespace DB.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BoatId");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<int>("FromId");
+
+                    b.Property<string>("Text");
+
+                    b.Property<int>("ToId");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("Models.News", b =>
                 {
                     b.Property<int>("Id")
@@ -120,30 +144,14 @@ namespace DB.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("Models.Recall", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BoatId");
-
-                    b.Property<int>("ClientId");
-
-                    b.Property<DateTime>("Date");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Recalls");
-                });
-
             modelBuilder.Entity("Models.Rent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BoatId");
-
                     b.Property<DateTime>("From");
+
+                    b.Property<int>("RecallId");
 
                     b.Property<DateTime>("To");
 
