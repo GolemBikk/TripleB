@@ -16,14 +16,20 @@ namespace ViewModels
         /// <summary>
         /// Заголовок новсти
         /// </summary>
-        [RegularExpression(@"[A-Z][a-z][А-Я][а-я]", ErrorMessage = "Нет заголовка")]
+        [RegularExpression(@"[A-Za-zА-Яа-я]+", ErrorMessage = "Нет заголовка")]
         public String Title { get; set; }
 
         /// <summary>
-        /// Полное описани новости
+        /// Анонс новости
         /// </summary>
+        [Required(ErrorMessage = "Не указан анонс")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Длина анонса должна быть от 2 до 100 символов")]
         public String Discription { get; set; }
 
+        /// <summary>
+        /// Полный текст новости
+        /// </summary>
+        [Required(ErrorMessage = "Введите текст новости")]
         public List<string> Text { get; set; }
 
         /// <summary>
