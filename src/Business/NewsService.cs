@@ -126,14 +126,17 @@ namespace Business
                     });
                     i++;
                 }
-                foreach (byte[] item in data.Images)
+                if (data.Images != null && data.Images.Count > 0)
                 {
-                    i_repository.Create(new Image
+                    foreach (byte[] item in data.Images)
                     {
-                        Content= item,
-                        OwnerId = news_id                       
-                    });
-                    i++;
+                        i_repository.Create(new Image
+                        {
+                            Content = item,
+                            OwnerId = news_id
+                        });
+                        i++;
+                    }
                 }
                 return 0;
             }
