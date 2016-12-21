@@ -30,7 +30,7 @@
                     <h2>Добавление нового судна</h2>
                 </div>
                 <div class="modal-body">
-                    <form asp-action="Add" asp-controller="Boat" asp-anti-forgery="true">
+                    <form asp-action="Add" asp-controller="Boat" asp-anti-forgery="true" enctype="multipart/form-data" method="post">
                         <div class="validation" asp-validation-summary="ModelOnly" />
                         <div>
                             <p>Введите свои данные:</p>
@@ -65,24 +65,33 @@
                             <input type="text" class="form-control" asp-for="Speed" />
                             <span asp-validation-for="Speed" />
                         </div>
+                        <div class="input-group form-group">
+                            <label class="input-group-addon" asp-for="Cost">Цена</label>
+                            <input type="text" class="form-control" asp-for="Cost" />
+                            <span asp-validation-for="Cost" />
+                        </div>
                         <div class="input-group">
                             <label class="input-group-addon" asp-for="Type">Выберите тип судна</label>
-                            <select asp-for="Type">
+                            <select asp-for="Type" class="form-control">
                                 <option value="yacht">Яхта</option>
                                 <option value="boat">Катер</option>
                             </select>
                         </div>
                         <div class="input-group">
                             <label class="input-group-addon" asp-for="Kind">Выберите операцию</label>
-                            <select asp-for="Kind">
+                            <select asp-for="Kind" class="form-control">
                                 <option value="buy">Продажа</option>
                                 <option value="rent">Аренда</option>
                             </select>
                         </div>
                         <div class="input-group form-group">
                             <label class="input-group-addon" asp-for="Description">Описание</label>
-                            <input type="text" class="form-control" asp-for="Description" />
+                            <textarea class="form-control" asp-for="Description" rows="10"></textarea>
                             <span asp-validation-for="Description" />
+                        </div>
+                        <div class="form-group">
+                            <label class="input-group-addon" asp-for="Description">Изображение</label>
+                            <input type="file" multiple name="files">
                         </div>
                         <div class="form-group modal-footer">
                             <input type="submit" value="Добавить" id='add' class="btn" />
