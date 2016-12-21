@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ViewModels;
 using Business;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace BadBoysBoating.Controllers
 {
@@ -16,13 +18,32 @@ namespace BadBoysBoating.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult EditNews(int boat_id)
+        {
+            NewsService service = new NewsService();
+            NewsViewModel model = service.GetNewsInfo(boat_id);
+
+            return View(model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddNews(NewsViewModel model)
+        public async Task<IActionResult> AddNews(ICollection<IFormFile> files, NewsViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && files.Count > 0)
             {
                 List<String> text = model.Text;
+                model.Images = new List<Byte[]>();
+
+                foreach (IFormFile file in files)
+                {
+                    if (file.Length > 0)
+                    {
+                        BinaryReader reader = new BinaryReader(file.OpenReadStream());
+                        model.Images.Add(reader.ReadBytes((int)file.Length));
+                    }
+                }
 
                 foreach (String item in text.First().Split(new char[] {'\r','\n'}))
                 {

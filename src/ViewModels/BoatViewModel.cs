@@ -60,7 +60,6 @@ namespace ViewModels
         /// <summary>
         /// Тип лодки (Яхта/Катер)
         /// </summary>
-        [RegularExpression(@"[ЯхтаКатер]+", ErrorMessage = "Некорректный статус")]
         public String Type { get; set; }
 
         /// <summary>

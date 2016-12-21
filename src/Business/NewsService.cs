@@ -69,17 +69,34 @@ namespace Business
         public List<NewsCollectionViewModel> GetAllNews(PageInfo info)
         {
             List<News> n_result = n_repository.GetAll().ToList();
+            
             List<NewsCollectionViewModel> result = new List<NewsCollectionViewModel>();
             foreach (News item in n_result)
             {
-                result.Add(new NewsCollectionViewModel
+                Image image = i_repository.GetFirstByOwnerId(item.Id);
+
+                if (image != null)
                 {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Discription = item.Preview,
-                    Date = item.Date,
-                    Image = i_repository.GetFirstByOwnerId(item.Id).Content
-                });
+                    result.Add(new NewsCollectionViewModel
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        Discription = item.Preview,
+                        Date = item.Date,
+                        Image = image.Content
+                    });
+                }
+                else
+                {
+                    result.Add(new NewsCollectionViewModel
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        Discription = item.Preview,
+                        Date = item.Date
+                    });
+                }
+
             }
             if (info != null && (result.Count > info.PageSize && result.Count < info.PageSize * (info.PageNumber - 1)))
             {
