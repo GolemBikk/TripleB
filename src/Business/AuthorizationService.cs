@@ -104,6 +104,24 @@ namespace Business
             }
         }
 
+
+        public int AccountStatus(int id)
+        {
+            try
+            {
+                Account account = repository.GetById(id);
+
+                account.Status = !account.Status;
+                repository.Update(account);
+
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Проверка, верно ли указан пароль
         /// </summary>
