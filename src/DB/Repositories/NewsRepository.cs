@@ -56,9 +56,14 @@ namespace DB.Repositories
         {
             using (TripleBDbContext db = new TripleBDbContext())
             {
+                var result = db.News.FirstOrDefault(x => x.Id == news.Id);
+
+
                 if (news != null)
                 {
-                    db.News.Update(news);
+                    result.Preview = news.Preview;
+                    result.Title = news.Title;
+                    result.Date = news.Date;
                     db.SaveChanges();
                 }
             }

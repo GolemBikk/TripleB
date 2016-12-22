@@ -1,10 +1,44 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿@{
+    ViewData["Title"] = "News";
+}
+@model List<NewsCollectionViewModel>
+<div>
+    <h2>Ваши предложения</h2>
+</div>
+<div id="products">
+    <ul class="thumbnails">
+        @foreach (NewsCollectionViewModel item in Model)
+        {
+            <div class="hero-unit thumbnail">
+                <h2>@item.Title</h2>
+                @if (item.Image != null)
+                {
+                    <img src="data:image;base64,@Convert.ToBase64String(item.Image)" alt="">
+                }
+                <p>@item.Discription</p>
+                <p>
+                    <a class="btn btn-primary btn-large" asp-controller="News" asp-action="EditNews" asp-route-news_id="@item.Id">
+                        Редактировать
+                    </a>
+                    <a class="btn btn-primary btn-large" asp-controller="News" asp-action="FullNews" asp-route-news_id="@item.Id">
+                        Просмотр
+                    </a>
+                    <a class="btn btn-primary btn-large" asp-controller="News" asp-action="DeleteNews" asp-route-news_id="@item.Id">
+                        Удалить
+                    </a>
+                </p>
+            </div>
+            <!--li class="span4">
+                <div class="thumbnail">
+                    @if (item.Image != null)
+                    {
+                        <img src="data:image;base64,@Convert.ToBase64String(item.Image)" alt="">
+                    }
+                    <h3>@item.Title</h3>
+                    <p>@item.Discription</p>
+                    <a class="btn btn-primary" asp-controller="Boat" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                </div>
+            </li-->
+        }
+    </ul>
+</div>

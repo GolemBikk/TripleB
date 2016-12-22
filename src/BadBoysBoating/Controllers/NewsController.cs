@@ -19,12 +19,29 @@ namespace BadBoysBoating.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditNews(int boat_id)
+        public IActionResult EditNews(int news_id)
         {
             NewsService service = new NewsService();
-            NewsViewModel model = service.GetNewsInfo(boat_id);
+            NewsViewModel model = service.GetNewsInfo(news_id);
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult FullNews(int news_id)
+        {
+            NewsService service = new NewsService();
+            NewsViewModel model = service.GetNewsInfo(news_id);
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteNews(int news_id)
+        {
+            NewsService service = new NewsService();
+            service.DeleteNews(news_id);
+
+            return RedirectToAction("News", "Admin");
         }
 
         [HttpPost]
@@ -33,7 +50,6 @@ namespace BadBoysBoating.Controllers
         {
             if (ModelState.IsValid && files.Count > 0)
             {
-                List<String> text = model.Text;
                 model.Images = new List<Byte[]>();
 
                 foreach (IFormFile file in files)
@@ -45,31 +61,41 @@ namespace BadBoysBoating.Controllers
                     }
                 }
 
-                foreach (String item in text.First().Split(new char[] {'\r','\n'}))
-                {
-                    if (item.Length > 0)
-                    {
-                        model.Text.Add(item);
-                    }
-                }
+                //foreach (String item in text.First().Split(new char[] {'\r','\n'}))
+                //{
+                //    if (item.Length > 0)
+                //    {
+                //        model.Text.Add(item);
+                //    }
+                //}
                 
-                model.Text.Remove(model.Text.First());
+                //model.Text.Remove(model.Text.First());
                 NewsService service = new NewsService();
                 service.AddNews(model);
                 return RedirectToAction("News", "Admin");
             }
             else
             {
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                ModelState.AddModelError("", "Некорректно введены данные");
             }
             return RedirectToAction("News", "Admin");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> EditNews(NewsViewModel model)
+        public async Task<IActionResult> EditNews(NewsViewModel model)
         {
-            throw new Exception();
+            if (ModelState.IsValid)
+            {
+                NewsService service = new NewsService();
+                service.EditNews(model);
+                return RedirectToAction("News", "Admin");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Некорректно введены данные");
+            }
+            return RedirectToAction("EditNews", "Admin");
         }
     }
 }

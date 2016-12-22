@@ -31,7 +31,7 @@ namespace ViewModels
         /// Полный текст новости
         /// </summary>
         [Required(ErrorMessage = "Введите текст новости")]
-        public List<string> Text { get; set; }
+        public String Text { get; set; }
 
         /// <summary>
         /// Дата публикации новости
