@@ -7,6 +7,7 @@ using ViewModels;
 using Business;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Localization;
 
 namespace BadBoysBoating.Controllers
 {
@@ -96,6 +97,18 @@ namespace BadBoysBoating.Controllers
                 ModelState.AddModelError("", "Некорректно введены данные");
             }
             return RedirectToAction("EditNews", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
     }
 }

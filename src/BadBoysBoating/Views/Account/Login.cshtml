@@ -1,5 +1,10 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     Layout = null;
+}
+@{
+    ViewData["Title"] = Localizer["MyFirstResource"];
 }
 @model LoginViewModel
 <!DOCTYPE html>
@@ -27,7 +32,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Авторизация</h2>
+                    <h2>@ViewData["Title"]</h2>
                 </div>
                 <div class="modal-body">
                     <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">

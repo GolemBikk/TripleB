@@ -64,7 +64,15 @@
             </div>
         </header>
         <footer>
-            © 2016 All right reserved.<br>Developed by Iundin Alexander and Velichko Michail
+            <!--© 2016 All right reserved.<br>Developed by Iundin Alexander and Velichko Michail-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>&copy; 2016 - Adding Localization</p>
+                </div>
+                <div class="col-sm-6 text-right">
+                    @await Html.PartialAsync("_SelectLanguagePartial")
+                </div>
+            </div>
         </footer>
     </div>     
     <div class="content container body-content">

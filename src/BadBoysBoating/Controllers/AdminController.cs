@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using ViewModels;
 using Business;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
 
 namespace BadBoysBoating.Controllers
 {
@@ -36,6 +38,18 @@ namespace BadBoysBoating.Controllers
             NewsService service = new NewsService();
             NewsViewModel news = service.GetNewsInfo(id);
             return View(news);
-        }       
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
+        }
     }
 }
