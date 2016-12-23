@@ -8,6 +8,7 @@ using ViewModels;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Text;
+using Microsoft.AspNetCore.Localization;
 
 namespace BadBoysBoating.Controllers
 {

@@ -54,7 +54,7 @@ namespace BadBoysBoating.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult LoginAccount()
         {
             return View();
         }
@@ -82,7 +82,7 @@ namespace BadBoysBoating.Controllers
             {
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
-            return RedirectToAction("Login", "Account", model);
+            return RedirectToAction("LoginAccount", "Account", model);
         }
 
         [HttpPost]

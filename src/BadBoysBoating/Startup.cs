@@ -96,7 +96,7 @@ namespace BadBoysBoating
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationScheme = "Cookies",
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/Account/LoginAccount"),
                 LogoutPath = new PathString("/Account/Logout"),
                 AccessDeniedPath = new PathString("/Home/Index"),
                 AutomaticAuthenticate = true,
