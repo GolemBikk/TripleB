@@ -28,7 +28,7 @@ namespace BadBoysBoating.Controllers
         public IActionResult Recalls(string recalls_type)
         {
             InitializeAccountId();
-            List<MessageCollectionViewModel> recalls = null;
+            List<MessageViewModel> recalls = null;
             switch (recalls_type)
             {
                 case "outbox":

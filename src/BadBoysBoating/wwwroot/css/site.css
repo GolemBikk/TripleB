@@ -5,8 +5,6 @@
     background-attachment: fixed;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
 .body-content {    
     width: 75%;
     float: right;
@@ -14,23 +12,7 @@
 .modal-body div{
     margin-bottom: 10px;
 }
-.modal-body p {
-    margin: 0;
-}
-#login_window {
 
-}
-
-#register_window {
-    
-}
-#vk_register {
-
-}
-.dialog_window
-{
-    padding: 1%;
-}
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
 select,

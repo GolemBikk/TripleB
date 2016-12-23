@@ -20,7 +20,9 @@ namespace BadBoysBoating.Controllers
         }
 
         public IActionResult Index()
-        {          
+        {
+            ViewData["StyleSheet"] = "Index";
+            ViewData["Login"] = CheckCookies();
             return View();
         }
 
@@ -75,6 +77,18 @@ namespace BadBoysBoating.Controllers
             );
 
             return LocalRedirect(returnUrl);
+        }
+
+        private string CheckCookies()
+        {
+            if (User.Identity.Name != null)
+            {
+                return User.Identity.Name;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }
