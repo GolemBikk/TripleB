@@ -34,15 +34,15 @@ namespace BadBoysBoating.Controllers
                 case "outbox":
                     {
                         MessageService r_service = new MessageService();
-                        recalls = r_service.GetOutbox(account_id);
+                        recalls = null;
                     }
                     break;
                 case "inbox":
                     {
                         MessageService r_service = new MessageService();
-                        recalls = r_service.GetInbox(account_id);
+                        recalls = null;
                     }
-                    break;                
+                    break;
             }
             return View(recalls);
         }
