@@ -28,7 +28,7 @@ namespace DB.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Message Read(int id)
+        public Message GetById(int id)
         {
             using (TripleBDbContext db = new TripleBDbContext())
             {
@@ -45,7 +45,7 @@ namespace DB.Repositories
         {
             using (TripleBDbContext db = new TripleBDbContext())
             {
-                return db.Messages.Where(x => x.BoatId == boat_id && x.Type.Equals("recall")).ToList();
+                return db.Messages.Where(x => x.BoatId == boat_id && x.Type.Equals("message")).ToList();
             }
         }
 
@@ -58,7 +58,7 @@ namespace DB.Repositories
         {
             using (TripleBDbContext db = new TripleBDbContext())
             {
-                return db.Messages.Where(x => x.ToId == user_id).ToList();
+                return db.Messages.Where(x => x.ToId == user_id && x.Type.Equals("recall")).ToList();
             }
         }
 
@@ -71,7 +71,7 @@ namespace DB.Repositories
         {
             using (TripleBDbContext db = new TripleBDbContext())
             {
-                return db.Messages.Where(x => x.FromId == user_id).ToList();
+                return db.Messages.Where(x => x.FromId == user_id && x.Type.Equals("recall")).ToList();
             }
         }
 

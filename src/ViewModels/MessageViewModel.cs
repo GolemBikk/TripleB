@@ -18,9 +18,24 @@ namespace ViewModels
         public int BoatId { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public string BoatModel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ClientId { get; set; }
+
+        /// <summary>
+        /// Уникальный номер лодки
+        /// </summary>
+        public int CustomerId { get; set; }
+
+        /// <summary>
         /// Уникально имя заказчика
         /// </summary>
-        public String CustomerLogin { get; set; }
+        public String Login { get; set; }
 
         /// <summary>
         /// Тип выполняемой операции
@@ -33,18 +48,8 @@ namespace ViewModels
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// Модель заказываемой лодки
-        /// </summary>
-        public String BoatModel { get; set; }
-
-        /// <summary>
         /// Сообщение заказчика
         /// </summary>
-        public String CustomerMessage { get; set; }
-
-        /// <summary>
-        /// Массив фотографий лодки
-        /// </summary>
-        public Byte[] Image { get; set; }
+        public String Text { get; set; }
     }
 }

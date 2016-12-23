@@ -12,10 +12,12 @@ namespace ViewModels
         /// </summary>
         public int Id { get; set; }
 
+        public string Text { get; set; }
+
         /// <summary>
         /// Уникальное имя заказчика
         /// </summary>
-        public string CustomerLogin { get; set; }
+        public string UserLogin { get; set; }
 
         /// <summary>
         /// Тип выполняемой операции (Покупка/Аренда)

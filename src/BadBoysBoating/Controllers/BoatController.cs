@@ -33,7 +33,7 @@ namespace BadBoysBoating.Controllers
         {
             if (ModelState.IsValid && files.Count > 0)
             {
-                BoatService service = new BoatService();
+                BoatService b_service = new BoatService();
                 AuthorizationService a_service = new AuthorizationService();
                 model.Owner = a_service.GetAccountInfo(User.Identity.Name).Id;
                 model.Images = new List<byte[]>();
@@ -44,32 +44,61 @@ namespace BadBoysBoating.Controllers
                         BinaryReader reader = new BinaryReader(file.OpenReadStream());
                         model.Images.Add(reader.ReadBytes((int)file.Length));
                     }
+                    else
+                    {
+                        ModelState.AddModelError("", "Присутствует пустой файл");
+                        return RedirectToAction("Add", "Boat", model);
+                    }
                 }
-                service.AddBoat(model);
-                return RedirectToAction("Products", "User");
+                int code = b_service.AddBoat(model);
+                switch (code)
+                {
+                    case 0: return RedirectToAction("Products", "User");
+                    case 1:
+                        {
+                            ModelState.AddModelError("", "Ошибка при добавлении записи");
+                        } break;
+                }
             }
             else
             {
-                ModelState.AddModelError("", "Ошибка при добавлении записи");
-                return RedirectToAction("Products", "User");
+                ModelState.AddModelError("", "Неверное заполнение полей, либо остутствует изображение");              
             }
+            return RedirectToAction("Add", "Boat", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ICollection<IFormFile> files, BoatViewModel model)
+        public async Task<IActionResult> Edit(BoatViewModel model)
         {
-            if (ModelState.IsValid && files.Count > 0)
+            if (ModelState.IsValid)
             {
                 BoatService service = new BoatService();
-                service.EditBoat(model);
-                return RedirectToAction("Products", "User");
+                AuthorizationService a_service = new AuthorizationService();
+                model.Owner = a_service.GetAccountInfo(User.Identity.Name).Id;
+                int code = service.EditBoat(model);
+                switch (code)
+                {
+                    case 0: return RedirectToAction("Products", "User");
+                    case 1:
+                        {
+                            ModelState.AddModelError("", "Ошибка при редактировании записи");
+                        }
+                        break;
+                }
             }
             else
             {
-                ModelState.AddModelError("", "Ошибка при редактировании записи");
-                return RedirectToAction("Products", "User");
+                ModelState.AddModelError("", "Неверное заполнение полей");                
             }
+            return RedirectToAction("Edit", "Boat", model);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            BoatService service = new BoatService();
+            service.DeleteBoat(id);
+            return RedirectToAction("Products", "User");
         }
     }
 }

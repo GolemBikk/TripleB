@@ -80,9 +80,15 @@ namespace DB.Repositories
         {
             using (TripleBDbContext db = new TripleBDbContext())
             {
-                if (boat != null)
+                var result = db.Boats.FirstOrDefault( x => x.Id == boat.Id);
+                if (boat != null && result != null)
                 {
-                    db.Boats.Update(boat);
+                    result.Kind = boat.Kind;
+                    result.Speed = boat.Speed;
+                    result.Status = boat.Status;
+                    result.Description = boat.Description;
+                    result.Cost = boat.Cost;
+                    result.BoatType = boat.BoatType;
                     db.SaveChanges();
                 }
             }

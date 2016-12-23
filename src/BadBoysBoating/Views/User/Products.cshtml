@@ -15,6 +15,7 @@
                     <h3>@item.BoatModel</h3>
                     <p>@item.Discription</p>
                     <a class="btn btn-primary" asp-controller="Boat" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                    <a class="btn btn-primary" asp-controller="Boat" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </div>
             </li>
         }

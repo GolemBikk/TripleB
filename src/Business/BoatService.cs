@@ -88,7 +88,6 @@ namespace Business
         {
             try
             {
-                int model_id = bm_repository.GetByName(data.BoatModel).Id;
                 Boat boat = new Boat
                 {
                     Id = data.ID,
@@ -98,23 +97,8 @@ namespace Business
                     Description = data.Description,
                     Kind = data.Kind,
                     Status = true,
-                    OwnerId = data.Owner,
-                    ModelId = model_id
                 };
                 b_repository.Boat_Update(boat);
-                i_repository.DeleteByOwnerId(data.ID);
-                if (data.Images != null && data.Images.Count > 0)
-                {
-                    foreach (byte[] content in data.Images)
-                    {
-                        Image image = new Image
-                        {
-                            Content = content,
-                            OwnerId = data.ID
-                        };
-                        i_repository.Create(image);
-                    }
-                }
                 return 0;
             }
             catch
