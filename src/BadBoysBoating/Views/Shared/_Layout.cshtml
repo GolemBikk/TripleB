@@ -8,10 +8,17 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/menu.css" />
-        <link rel="stylesheet" href="~/css/content.css" />
+        <link rel="stylesheet" href="~/css/menu.css" />       
+        @switch (ViewData["StyleSheet"].ToString())
+        {
+            case "Index":
+                {
+                     <link rel="stylesheet" href="~/css/index.css" />
+                } break;
+        }
+        <!--link rel="stylesheet" href="~/css/content.css" />
         <link rel="stylesheet" href="~/css/about.css" />
-        <link rel="stylesheet" href="~/css/contact.css" />
+        <link rel="stylesheet" href="~/css/contact.css" />-->
         <script src="~/js/site.js" type="text/javascript"></script>
     </environment>
     <environment names="Staging,Production">
@@ -24,9 +31,9 @@
 </head>
 <body>       
     <div id="side_container">
-        <div id="menu_button" class="right carousel-control">
+        <!--<div id="menu_button" class="right carousel-control">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        </div>
+        </div>-->
         <header>
             <div id="logotype">
                 <a asp-area="" asp-controller="Home" asp-action="Index">
@@ -58,20 +65,24 @@
                 </ul>
             </div>
             <div id="registration_menu" class="navbar-collapse collapse">
-                <a id="login_button" class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="LoginAccount">Вход</a>
-                <a id="logout_button" class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
-                <a id="register_button" class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a>
+                @if (ViewData["Login"].ToString().Length > 0)
+                {
+                    <a id="logout_button" class="btn btn-primary  my-btn" asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                }
+                else
+                {
+                    <a id="login_button" class="btn btn-primary my-btn" asp-area="" asp-controller="Account" asp-action="LoginAccount">Вход</a>
+                    <a id="register_button" class="btn btn-primary my-btn" asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a>
+                }               
             </div>
         </header>
         <footer>
-            <!--© 2016 All right reserved.<br>Developed by Iundin Alexander and Velichko Michail-->
-            <div class="row">
-                <div class="col-sm-6">
-                    <p>&copy; 2016 - Adding Localization</p>
-                </div>
-                <div class="col-sm-6 text-right">
-                    @await Html.PartialAsync("_SelectLanguagePartial")
-                </div>
+            <!--<p>&copy; 2016 Developed by Iundin Alexander and Velichko Michail</p>
+                <div>
+                    <p>&copy; 2016 Разработано Юндином Александром и Величко Михаилом</p>
+                </div>-->
+            <div>                
+                @await Html.PartialAsync("_SelectLanguagePartial")
             </div>
         </footer>
     </div>     
