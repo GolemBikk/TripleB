@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ViewModels;
 using Business;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Localization;
 
 namespace BadBoysBoating.Controllers
 {
@@ -16,39 +19,96 @@ namespace BadBoysBoating.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult EditNews(int news_id)
+        {
+            NewsService service = new NewsService();
+            NewsViewModel model = service.GetNewsInfo(news_id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult FullNews(int news_id)
+        {
+            NewsService service = new NewsService();
+            NewsViewModel model = service.GetNewsInfo(news_id);
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteNews(int news_id)
+        {
+            NewsService service = new NewsService();
+            service.DeleteNews(news_id);
+
+            return RedirectToAction("News", "Admin");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddNews(NewsViewModel model)
+        public async Task<IActionResult> AddNews(ICollection<IFormFile> files, NewsViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && files.Count > 0)
             {
-                List<String> text = model.Text;
+                model.Images = new List<Byte[]>();
 
-                foreach (String item in text.First().Split(new char[] {'\r','\n'}))
+                foreach (IFormFile file in files)
                 {
-                    if (item.Length > 0)
+                    if (file.Length > 0)
                     {
-                        model.Text.Add(item);
+                        BinaryReader reader = new BinaryReader(file.OpenReadStream());
+                        model.Images.Add(reader.ReadBytes((int)file.Length));
                     }
                 }
+
+                //foreach (String item in text.First().Split(new char[] {'\r','\n'}))
+                //{
+                //    if (item.Length > 0)
+                //    {
+                //        model.Text.Add(item);
+                //    }
+                //}
                 
-                model.Text.Remove(model.Text.First());
+                //model.Text.Remove(model.Text.First());
                 NewsService service = new NewsService();
                 service.AddNews(model);
                 return RedirectToAction("News", "Admin");
             }
             else
             {
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                ModelState.AddModelError("", "Некорректно введены данные");
             }
             return RedirectToAction("News", "Admin");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> EditNews(NewsViewModel model)
+        public async Task<IActionResult> EditNews(NewsViewModel model)
         {
-            throw new Exception();
+            if (ModelState.IsValid)
+            {
+                NewsService service = new NewsService();
+                service.EditNews(model);
+                return RedirectToAction("News", "Admin");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Некорректно введены данные");
+            }
+            return RedirectToAction("EditNews", "Admin");
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
     }
 }

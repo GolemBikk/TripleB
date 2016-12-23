@@ -55,9 +55,12 @@ namespace Business
                 Date = n_result.Date,
                 Title = n_result.Title,
                 Discription = n_result.Preview,
-                Text = textbloks,
                 Images = images
             };
+            foreach (String item in textbloks)
+            {
+                news.Text += item + "\r\n";
+            }
             return news;
         }
 
@@ -69,17 +72,34 @@ namespace Business
         public List<NewsCollectionViewModel> GetAllNews(PageInfo info)
         {
             List<News> n_result = n_repository.GetAll().ToList();
+            
             List<NewsCollectionViewModel> result = new List<NewsCollectionViewModel>();
             foreach (News item in n_result)
             {
-                result.Add(new NewsCollectionViewModel
+                Image image = i_repository.GetFirstByOwnerId(item.Id);
+
+                if (image != null)
                 {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Discription = item.Preview,
-                    Date = item.Date,
-                    Image = i_repository.GetFirstByOwnerId(item.Id).Content
-                });
+                    result.Add(new NewsCollectionViewModel
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        Discription = item.Preview,
+                        Date = item.Date,
+                        Image = image.Content
+                    });
+                }
+                else
+                {
+                    result.Add(new NewsCollectionViewModel
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        Discription = item.Preview,
+                        Date = item.Date
+                    });
+                }
+
             }
             if (info != null && (result.Count > info.PageSize && result.Count < info.PageSize * (info.PageNumber - 1)))
             {
@@ -116,7 +136,7 @@ namespace Business
                     Date = DateTime.Today
                 });
                 int i = 0;
-                foreach (string item in data.Text)
+                foreach (string item in data.Text.Split(new char[] { '\r','\n' }))
                 {
                     t_repository.Create(new TextBlock
                     {
@@ -164,22 +184,12 @@ namespace Business
                 });
                 int i = 0;
                 t_repository.DeleteByOwnerId(data.Id);
-                foreach (string item in data.Text)
+                foreach (string item in data.Text.Split(new char[] { '\r', '\n'}))
                 {
                     t_repository.Create(new TextBlock
                     {
                         Text = item,
                         Rank = i,
-                        OwnerId = data.Id
-                    });
-                    i++;
-                }
-                i_repository.DeleteByOwnerId(data.Id);
-                foreach (byte[] item in data.Images)
-                {
-                    i_repository.Create(new Image
-                    {
-                        Content = item,
                         OwnerId = data.Id
                     });
                     i++;

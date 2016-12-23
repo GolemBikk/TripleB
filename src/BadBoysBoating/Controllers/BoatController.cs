@@ -8,6 +8,7 @@ using ViewModels;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Text;
+using Microsoft.AspNetCore.Localization;
 
 namespace BadBoysBoating.Controllers
 {
@@ -99,6 +100,18 @@ namespace BadBoysBoating.Controllers
             BoatService service = new BoatService();
             service.DeleteBoat(id);
             return RedirectToAction("Products", "User");
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
     }
 }

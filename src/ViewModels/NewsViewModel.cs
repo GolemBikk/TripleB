@@ -16,7 +16,8 @@ namespace ViewModels
         /// <summary>
         /// Заголовок новсти
         /// </summary>
-        [RegularExpression(@"[A-Za-zА-Яа-я]+", ErrorMessage = "Нет заголовка")]
+        [Required(ErrorMessage = "Не указан анонс")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Длина анонса должна быть от 2 до 50 символов")]
         public String Title { get; set; }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace ViewModels
         /// Полный текст новости
         /// </summary>
         [Required(ErrorMessage = "Введите текст новости")]
-        public List<string> Text { get; set; }
+        public String Text { get; set; }
 
         /// <summary>
         /// Дата публикации новости

@@ -1,5 +1,16 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     Layout = null;
+}
+@{
+    ViewData["Title"] = Localizer["Title"];
+    ViewData["YouData"] = Localizer["YouData"];
+    ViewData["Login"] = Localizer["Login"];
+    ViewData["Password"] = Localizer["Password"];
+    ViewData["SignIn"] = Localizer["SignIn"];
+    ViewData["Cancel"] = Localizer["Cancel"];
+    ViewData["SocialNetwork"] = Localizer["SocialNetwork"];
 }
 @model LoginViewModel
 <!DOCTYPE html>
@@ -27,32 +38,32 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Авторизация</h2>
+                    <h2>@ViewData["Title"]</h2>
                 </div>
                 <div class="modal-body">
                     <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
                         <div class="validation" asp-validation-summary="ModelOnly" />
                         <div>
-                            <p>Введите свои данные:</p>
+                            <p>@ViewData["YouData"]</p>
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="UserLogin">Логин</label>
+                            <label class="input-group-addon" asp-for="UserLogin">@ViewData["Login"]</label>
                             <input type="text" class="form-control" asp-for="UserLogin" />
                             <span asp-validation-for="UserLogin" />
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Password">Пароль</label>
+                            <label class="input-group-addon" asp-for="Password">@ViewData["Password"]</label>
                             <input type="password" class="form-control" asp-for="Password" />
                             <span asp-validation-for="Password" />
                         </div>
                         <div class="form-group modal-footer">
-                            <input type="submit" value="Войти" id='login' class="btn" />
-                            <input type='button' value='Отмена' class='btn btn-default' data-dismiss='modal' />
+                            <input type="submit" value="@ViewData["SignIn"]" id='login' class="btn" />
+                            <input type='button' value='@ViewData["Cancel"]' class='btn btn-default' data-dismiss='modal' />
                         </div>                        
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <p>Авторизирутесь с помощью социальных сетей:</p>
+                    <p>@ViewData["SocialNetwork"]</p>
                     <input type='button' value='Vk' id='vk_register' class='btn' />
                     <input type='button' value='Fb' id='vk_register' class='btn' />
                     <input type='button' value='G+' id='vk_register' class='btn' />

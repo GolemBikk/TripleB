@@ -7,7 +7,7 @@ namespace ViewModels
         /// <summary>
         /// Фамилия, Имя пользователя 
         /// </summary>
-        [RegularExpression(@"[A-Za-zА-Яа-я]+\s[A-Za-zА-Яа-я]+", ErrorMessage = "Некорректный адрес")]
+        [RegularExpression(@"[A-Za-zА-Яа-я]+\s[A-Za-zА-Яа-я]+", ErrorMessage = "Некорректное имя и фамилия")]
         public string UserName { get; set; }
 
         /// <summary>

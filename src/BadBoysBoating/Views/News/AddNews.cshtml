@@ -30,7 +30,7 @@
                     <h2>Добавление нового судна</h2>
                 </div>
                 <div class="modal-body">
-                    <form asp-action="AddNews" asp-controller="News" asp-anti-forgery="true">
+                    <form asp-action="AddNews" asp-controller="News" asp-anti-forgery="true" enctype="multipart/form-data" method="post">
                         <div class="validation" asp-validation-summary="ModelOnly" />
                         <div>
                             <p>Введите данные о новости:</p>
@@ -49,6 +49,10 @@
                             <label class="input-group-addon" asp-for="Text">Текст новости</label>
                             <textarea class="form-control" asp-for="Text" rows="10"></textarea>
                             <span asp-validation-for="Text" />
+                        </div>
+                        <div class="form-group">
+                            <label class="input-group-addon">Изображение</label>
+                            <input type="file" multiple name="files">
                         </div>
                         <div class="form-group modal-footer">
                             <input type="submit" value="Добавить" id='login' class="btn" />

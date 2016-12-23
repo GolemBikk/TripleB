@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Business;
 using ViewModels;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace BadBoysBoating.Controllers
 {
@@ -21,6 +24,7 @@ namespace BadBoysBoating.Controllers
         {
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -50,7 +54,7 @@ namespace BadBoysBoating.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult LoginAccount()
         {
             return View();
         }
@@ -78,7 +82,7 @@ namespace BadBoysBoating.Controllers
             {
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
-            return RedirectToAction("Login", "Account", model);
+            return RedirectToAction("LoginAccount", "Account", model);
         }
 
         [HttpPost]
@@ -117,6 +121,18 @@ namespace BadBoysBoating.Controllers
                 ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.Authentication.SignInAsync("Cookies", new ClaimsPrincipal(id));
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
     }
 }

@@ -1,10 +1,64 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+@model NewsViewModel
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BadBoysBoating</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/menu.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
-
-</body>
+    <div id="login_window" class="dialog_window">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Редактирование новости</h2>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="EditNews" asp-controller="News" asp-anti-forgery="true">
+                        <div class="validation" asp-validation-summary="ModelOnly" />
+                        <div>
+                            <p>Введите данные о новости:</p>
+                        </div>
+                        <input type="text" style="display:none" asp-for="Id" />
+                        <div class="input-group form-group">
+                            <label class="input-group-addon" asp-for="Title">Заголовок</label>
+                            <input type="text" class="form-control" asp-for="Title" />
+                            <span asp-validation-for="Title" />
+                        </div>
+                        <div class="input-group form-group">
+                            <label class="input-group-addon" asp-for="Discription">Анонс</label>
+                            <input type="text" class="form-control" asp-for="Discription" />
+                            <span asp-validation-for="Discription" />
+                        </div>
+                        <div class="input-group form-group">
+                            <label class="input-group-addon" asp-for="Text">Текст новости</label>
+                            <textarea class="form-control" asp-for="Text" rows="10"></textarea>
+                            <span asp-validation-for="Text" />
+                        </div>
+                        <div class="form-group modal-footer">
+                            <input type="submit" value="Изменить" id='login' class="btn" />
+                            <a asp-area="" asp-controller="Admin" asp-action="News" class="btn btn-default">Отмена</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>a
 </html>

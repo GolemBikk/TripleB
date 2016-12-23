@@ -10,6 +10,10 @@ using Microsoft.Extensions.Logging;
 using ViewModels;
 using Business;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 namespace BadBoysBoating
 {
@@ -41,11 +45,35 @@ namespace BadBoysBoating
 
             services.AddMvc();
 
+            services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
+
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix,opts => { opts.ResourcesPath = "Resources"; })
+                .AddDataAnnotationsLocalization();
+
+            services.Configure<RequestLocalizationOptions>(
+        opts =>
+        {
+            var supportedCultures = new[]
+            {
+                new CultureInfo("ru"),
+                new CultureInfo("en")
+            };
+
+            opts.DefaultRequestCulture = new RequestCulture("ru");
+            // Formatting numbers, dates, etc.
+            opts.SupportedCultures = supportedCultures;
+            // UI strings that we have localized.
+            opts.SupportedUICultures = supportedCultures;
+        });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
+
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -68,12 +96,15 @@ namespace BadBoysBoating
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationScheme = "Cookies",
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/Account/LoginAccount"),
                 LogoutPath = new PathString("/Account/Logout"),
                 AccessDeniedPath = new PathString("/Home/Index"),
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true
             });
+
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
 
             app.UseMvc(routes =>
             {
@@ -83,6 +114,8 @@ namespace BadBoysBoating
             });
             DatabaseInitialization();
         }
+
+
 
         /// <summary>
         /// Инициализации БД
