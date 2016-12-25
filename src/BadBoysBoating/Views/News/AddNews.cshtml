@@ -27,7 +27,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Добавление нового судна</h2>
+                    <h2>Добавление новой новости</h2>
                 </div>
                 <div class="modal-body">
                     <form asp-action="AddNews" asp-controller="News" asp-anti-forgery="true" enctype="multipart/form-data" method="post">
@@ -35,28 +35,28 @@
                         <div>
                             <p>Введите данные о новости:</p>
                         </div>
-                        <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Title">Заголовок</label>
-                            <input type="text" class="form-control" asp-for="Title" />
+                        <div class="form-group">
+                            <label class="input-label" asp-for="Title">Заголовок</label>
+                            <input type="text" class="form-control input-field" asp-for="Title" />
                             <span asp-validation-for="Title" />
                         </div>
-                        <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Discription">Анонс</label>
-                            <input type="text" class="form-control" asp-for="Discription" />
+                        <div class="form-group">                           
+                            <label class="input-label" asp-for="Discription">Анонс</label>
+                            <textarea class="form-control input-field" asp-for="Discription" rows="3"></textarea>
                             <span asp-validation-for="Discription" />
                         </div>
-                        <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Text">Текст новости</label>
-                            <textarea class="form-control" asp-for="Text" rows="10"></textarea>
+                        <div class="form-group">
+                            <label class="input-label" asp-for="Text">Текст новости</label>
+                            <textarea class="form-control input-field" asp-for="Text" rows="10"></textarea>
                             <span asp-validation-for="Text" />
                         </div>
-                        <div class="form-group">
-                            <label class="input-group-addon">Изображение</label>
-                            <input type="file" multiple name="files">
+                        <div>
+                            <label class="input-label">Изображение</label>
+                            <input type="file" name="files" />
                         </div>
                         <div class="form-group modal-footer">
-                            <input type="submit" value="Добавить" id='login' class="btn" />
-                            <input type='button' value='Отмена' class='btn btn-default' data-dismiss='modal' />
+                            <input type="submit" value="Добавить" id='add' class="btn" />
+                            <a asp-area="" asp-controller="News" asp-action="Index" class="btn btn-default">Отмена</a>
                         </div> 
                     </form>
                 </div>

@@ -12,28 +12,26 @@ namespace BadBoysBoating.Controllers
 {
     public class HomeController : Controller
     {
-        private BoatService service;
+        private BoatService b_service;
+        private NewsService n_service;
 
         public HomeController()
         {
-            service = new BoatService();
+            b_service = new BoatService();
+            n_service = new NewsService();
         }
 
         public IActionResult Index()
         {
             ViewData["StyleSheet"] = "Index";
             ViewData["Login"] = CheckCookies();
-            return View();
-        }
-
-        public IActionResult News()
-        {
-            return View();
-        }
+            List<NewsCollectionViewModel> model = n_service.GetAllNews(new PageInfo { PageNumber = 1, PageSize = 5});
+            return View(model);
+        }       
 
         public IActionResult Rent(int page_num = 1)
         {
-            List<BoatCollectionViewModel> boats = service.GetAllBoat(new PageInfo { PageNumber = page_num, PageSize = 9 }, "rent");
+            List<BoatCollectionViewModel> boats = b_service.GetAllBoat(new PageInfo { PageNumber = page_num, PageSize = 9 }, "rent");
             return View(boats);
         }
 
@@ -44,21 +42,21 @@ namespace BadBoysBoating.Controllers
 
         public IActionResult Product(int boat_id)
         {
-            BoatViewModel boat = service.GetBoatInfo(boat_id);
+            BoatViewModel boat = b_service.GetBoatInfo(boat_id);
             return View(boat);
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            ViewData["StyleSheet"] = "About";
+            ViewData["Login"] = CheckCookies();
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
+            ViewData["StyleSheet"] = "Contact";
+            ViewData["Login"] = CheckCookies();
             return View();
         }
 

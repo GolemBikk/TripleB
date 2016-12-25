@@ -1,34 +1,29 @@
 ﻿@model NewsViewModel
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BadBoysBoating</title>
-
-    <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/menu.css" />
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
-    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
-</head>
-<body>
-    <div id="about_description">
-            <h1>@Model.Title</h1>
-            <p>
-                @if (Model.Images != null && Model.Images.Count > 0)
-                {
-                    <img src="data:image;base64,@Convert.ToBase64String(Model.Images.First())" alt="">
-                }
-                <h3>@Model.Text</h3>
-            </p>
+<div id="about_description" class="news-content">
+    <div class="page-header">
+        <h2>@Model.Title</h2>
+        <p></p>
+    </div>   
+    <div class="preview">
+        <h3>@Model.Discription</h3>
+        @if (Model.Images != null && Model.Images.Count > 0)
+        {
+            <img class="news-img center-block" src="data:image;base64,@Convert.ToBase64String(Model.Images.First())" alt="">
+        }
     </div>
-</body>
-</html>
+    <div class="news-text">
+        @foreach (String item in Model.Text.Split(new char[] { '\r', '\n' }))
+        {
+            if (item.Length > 0)
+            {
+                <h4>@item</h4>
+            }
+        }
+    </div>
+    <div>
+        <h4 class="news-date">@(Model.Date.Day).@(Model.Date.Month).@(Model.Date.Year)</h4>
+        <ul class="pager">
+            <li><a class="pager-btn-left" asp-area="" asp-controller="News" asp-action="Index" asp-route-page_num="@ViewData["CurentPage"].ToString()">Вернуться</a></li>
+        </ul>
+    </div>  
+</div>
