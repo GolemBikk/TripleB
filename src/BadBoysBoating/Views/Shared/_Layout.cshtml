@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -71,40 +76,40 @@
             </div>
             <div id="navigation_menu" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["String1"]</a></li>
                     @if (ViewData["Login"].ToString().Length > 0)
                     {
-                        <li><a asp-area="" asp-controller="User" asp-action="Index">Мой Кабинет</a></li>
+                        <li><a asp-area="" asp-controller="User" asp-action="Index">@Localizer["String16"]</a></li>
                     }
-                    <li><a asp-area="" asp-controller="News" asp-action="Index">Новости</a></li>
+                    <li><a asp-area="" asp-controller="News" asp-action="Index">@Localizer["String2"]</a></li>
                     <li class="navbar-collapse collapse">
-                        <a id="product_link">Продукция</a>
+                        <a id="product_link">@Localizer["String3"]</a>
                         <ul id="product_list" class="nav navbar-nav collapse list">
-                            <li><a asp-area="" asp-controller="Home" asp-action="Sale">Продажа</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Rent">Аренда</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Sale">@Localizer["String4"]</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Rent">@Localizer["String5"]</a></li>
                         </ul>
                     </li>
                     <li class="navbar-collapse collapse">
-                        <a id="about_link">О нас</a>
+                        <a id="about_link">@Localizer["String6"]</a>
                         <ul id="about_list" class="nav navbar-nav collapse list">
-                            <li><a asp-area="" asp-controller="Home" asp-action="About">История</a></li>
-                            <li><a>Услуги</a></li>
-                            <li><a>Награды</a></li>
-                            <li><a>Отзывы</a></li>
+                            <li><a href="~/Home/About#history">@Localizer["String7"]</a></li>
+                            <li><a>@Localizer["String8"]</a></li>
+                            <li><a>@Localizer["String9"]</a></li>
+                            <li><a>@Localizer["String10"]</a></li>
                         </ul>
                     </li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Контакты</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["String11"]</a></li>
                 </ul>
             </div>
             <div id="registration_menu" class="navbar-collapse collapse">
                 @if (ViewData["Login"].ToString().Length > 0)
                 {
-                    <a id="logout_button" class="btn btn-primary  my-btn" asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                    <a id="logout_button" class="btn btn-primary  my-btn" asp-area="" asp-controller="Account" asp-action="Logout">@Localizer["String12"]</a>
                 }
                 else
                 {
-                    <a id="login_button" class="btn btn-primary my-btn" asp-area="" asp-controller="Account" asp-action="LoginAccount">Вход</a>
-                    <a id="register_button" class="btn btn-primary my-btn" asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a>
+                    <a id="login_button" class="btn btn-primary my-btn" asp-area="" asp-controller="Account" asp-action="LoginAccount">@Localizer["String13"]</a>
+                    <a id="register_button" class="btn btn-primary my-btn" asp-area="" asp-controller="Account" asp-action="Register">@Localizer["String14"]</a>
                 }               
             </div>
         </header>
@@ -119,7 +124,7 @@
     <div class="content container body-content text">
         @RenderBody()
         <div class="authors">
-            <p>&copy; 2016 Разработано Юндином Александром и Величко Михаилом</p>
+            <p>&copy; 2016 @Localizer["String15"]</p>
         </div>
     </div>
 

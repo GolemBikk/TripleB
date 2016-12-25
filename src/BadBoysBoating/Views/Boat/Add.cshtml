@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     Layout = null;
 }
 @model BoatViewModel
@@ -27,75 +29,75 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Добавление нового судна</h2>
+                    <h2>@Localizer["String1"]</h2>
                 </div>
                 <div class="modal-body">
                     <form asp-action="Add" asp-controller="Boat" asp-anti-forgery="true" enctype="multipart/form-data" method="post">
                         <div class="validation" asp-validation-summary="ModelOnly" />
                         <div>
-                            <p>Введите свои данные:</p>
+                            <p>@Localizer["String2"]:</p>
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="ManufacturerName">Производитель</label>
+                            <label class="input-group-addon" asp-for="ManufacturerName">@Localizer["String3"]</label>
                             <input type="text" class="form-control" asp-for="ManufacturerName" />
                             <span asp-validation-for="ManufacturerName" />
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="BoatModel">Наименование модели</label>
+                            <label class="input-group-addon" asp-for="BoatModel">@Localizer["String4"]</label>
                             <input type="text" class="form-control" asp-for="BoatModel" />
                             <span asp-validation-for="BoatModel" />
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Lenght">Длина</label>
+                            <label class="input-group-addon" asp-for="Lenght">@Localizer["String5"]</label>
                             <input type="text" class="form-control" asp-for="Lenght" />
                             <span asp-validation-for="Lenght" />
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Width">Ширина</label>
+                            <label class="input-group-addon" asp-for="Width">@Localizer["String6"]</label>
                             <input type="text" class="form-control" asp-for="Width" />
                             <span asp-validation-for="Width" />
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Displacement">Водоизмещение</label>
+                            <label class="input-group-addon" asp-for="Displacement">@Localizer["String7"]</label>
                             <input type="text" class="form-control" asp-for="Displacement" />
                             <span asp-validation-for="Displacement" />
                         </div>                       
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Speed">Скорость</label>
+                            <label class="input-group-addon" asp-for="Speed">@Localizer["String8"]</label>
                             <input type="text" class="form-control" asp-for="Speed" />
                             <span asp-validation-for="Speed" />
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Cost">Цена</label>
+                            <label class="input-group-addon" asp-for="Cost">@Localizer["String9"]</label>
                             <input type="text" class="form-control" asp-for="Cost" />
                             <span asp-validation-for="Cost" />
                         </div>
                         <div class="input-group">
-                            <label class="input-group-addon" asp-for="Type">Выберите тип судна</label>
+                            <label class="input-group-addon" asp-for="Type">@Localizer["String10"]</label>
                             <select asp-for="Type" class="form-control">
-                                <option value="yacht">Яхта</option>
-                                <option value="boat">Катер</option>
+                                <option value="yacht">@Localizer["String11"]</option>
+                                <option value="boat">@Localizer["String12"]</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label class="input-group-addon" asp-for="Kind">Выберите операцию</label>
+                            <label class="input-group-addon" asp-for="Kind">@Localizer["String13"]</label>
                             <select asp-for="Kind" class="form-control">
-                                <option value="buy">Продажа</option>
-                                <option value="rent">Аренда</option>
+                                <option value="buy">@Localizer["String14"]</option>
+                                <option value="rent">@Localizer["String15"]</option>
                             </select>
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Description">Описание</label>
+                            <label class="input-group-addon" asp-for="Description">@Localizer["String16"]</label>
                             <textarea class="form-control" asp-for="Description" rows="10"></textarea>
                             <span asp-validation-for="Description" />
                         </div>
                         <div class="form-group">
-                            <label class="input-group-addon">Изображение</label>
+                            <label class="input-group-addon">@Localizer["String17"]</label>
                             <input type="file" multiple name="files">
                         </div>
                         <div class="form-group modal-footer">
-                            <input type="submit" value="Добавить" id='add' class="btn" />
-                            <input type='button' value='Отмена' class='btn btn-default' data-dismiss='modal' />
+                            <input type="submit" value="@Localizer["String18"]" id='add' class="btn" />
+                            <input type='button' value='@Localizer["String19"]' class='btn btn-default' data-dismiss='modal' />
                         </div>
                     </form>
                 </div>

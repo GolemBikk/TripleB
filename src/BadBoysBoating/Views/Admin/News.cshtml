@@ -1,9 +1,11 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = "News";
 }
 @model List<NewsCollectionViewModel>
 <div>
-    <h2>Ваши предложения</h2>
+    <h2>@Localizer["String1"]</h2>
 </div>
 <div id="products">
     <ul class="thumbnails">
@@ -18,13 +20,13 @@
                 <p>@item.Discription</p>
                 <p>
                     <a class="btn btn-primary btn-large" asp-controller="News" asp-action="EditNews" asp-route-news_id="@item.Id">
-                        Редактировать
+                        @Localizer["String2"]
                     </a>
                     <a class="btn btn-primary btn-large" asp-controller="News" asp-action="FullNews" asp-route-news_id="@item.Id">
-                        Просмотр
+                        @Localizer["String3"]
                     </a>
                     <a class="btn btn-primary btn-large" asp-controller="News" asp-action="DeleteNews" asp-route-news_id="@item.Id">
-                        Удалить
+                        @Localizer["String4"]
                     </a>
                 </p>
             </div>
