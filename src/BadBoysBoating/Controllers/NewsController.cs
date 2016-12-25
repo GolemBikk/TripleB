@@ -13,6 +13,23 @@ namespace BadBoysBoating.Controllers
 {
     public class NewsController : Controller
     {
+        private NewsService n_service;
+
+        public NewsController()
+        {
+            n_service = new NewsService();
+        }
+
+        public IActionResult Index(int page_num = 1)
+        {
+            ViewData["StyleSheet"] = "Previews";
+            ViewData["Login"] = CheckCookies();
+            ViewData["CurentPage"] = page_num;
+            ViewData["TotalPages"] = n_service.GetPagesCount(3);
+            List<NewsCollectionViewModel> model = n_service.GetAllNews(new PageInfo { PageNumber = page_num, PageSize = 3 });
+            return View(model);
+        }
+
         [HttpGet]
         public IActionResult AddNews()
         {
@@ -22,26 +39,23 @@ namespace BadBoysBoating.Controllers
         [HttpGet]
         public IActionResult EditNews(int news_id)
         {
-            NewsService service = new NewsService();
-            NewsViewModel model = service.GetNewsInfo(news_id);
-
+            NewsViewModel model = n_service.GetNewsInfo(news_id);            
             return View(model);
         }
 
         [HttpGet]
-        public IActionResult FullNews(int news_id)
+        public IActionResult FullNews(int news_id, int page_num = 1)
         {
-            NewsService service = new NewsService();
-            NewsViewModel model = service.GetNewsInfo(news_id);
-
+            NewsViewModel model = n_service.GetNewsInfo(news_id);
+            ViewData["CurentPage"] = page_num;
+            ViewData["StyleSheet"] = "News";
+            ViewData["Login"] = CheckCookies();
             return View(model);
         }
 
         public async Task<IActionResult> DeleteNews(int news_id)
         {
-            NewsService service = new NewsService();
-            service.DeleteNews(news_id);
-
+            n_service.DeleteNews(news_id);
             return RedirectToAction("News", "Admin");
         }
 
@@ -61,16 +75,6 @@ namespace BadBoysBoating.Controllers
                         model.Images.Add(reader.ReadBytes((int)file.Length));
                     }
                 }
-
-                //foreach (String item in text.First().Split(new char[] {'\r','\n'}))
-                //{
-                //    if (item.Length > 0)
-                //    {
-                //        model.Text.Add(item);
-                //    }
-                //}
-                
-                //model.Text.Remove(model.Text.First());
                 NewsService service = new NewsService();
                 service.AddNews(model);
                 return RedirectToAction("News", "Admin");
@@ -109,6 +113,18 @@ namespace BadBoysBoating.Controllers
             );
 
             return LocalRedirect(returnUrl);
+        }
+
+        private string CheckCookies()
+        {
+            if (User.Identity.Name != null)
+            {
+                return User.Identity.Name;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

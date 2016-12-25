@@ -8,12 +8,41 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/menu.css" />       
+        <link rel="stylesheet" href="~/css/menu.css" />  
+        <link rel="stylesheet" href="~/css/content.css" />     
         @switch (ViewData["StyleSheet"].ToString())
         {
             case "Index":
                 {
                      <link rel="stylesheet" href="~/css/index.css" />
+                } break;
+            case "About":
+                {
+                    <link rel="stylesheet" href="~/css/about.css" />
+                } break;
+            case "Contact":
+                {
+                    <link rel="stylesheet" href="~/css/contact.css" />
+                } break;
+            case "Product":
+                {
+                    <link rel="stylesheet" href="~/css/probuct.css" />
+                } break;
+            case "Sale":
+                {
+                    <link rel="stylesheet" href="~/css/sale.css" />
+                } break;
+            case "Rent":
+                {
+                    <link rel="stylesheet" href="~/css/rent.css" />
+                } break;
+            case "News":
+                {
+                    <link rel="stylesheet" href="~/css/news.css" />
+                } break;
+            case "Previews":
+                {
+                    <link rel="stylesheet" href="~/css/previews.css" />
                 } break;
         }
         <!--link rel="stylesheet" href="~/css/content.css" />
@@ -43,8 +72,11 @@
             <div id="navigation_menu" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
-                    <li><a asp-area="" asp-controller="User" asp-action="Index">Мой Кабинет</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="News">Новости</a></li>
+                    @if (ViewData["Login"].ToString().Length > 0)
+                    {
+                        <li><a asp-area="" asp-controller="User" asp-action="Index">Мой Кабинет</a></li>
+                    }
+                    <li><a asp-area="" asp-controller="News" asp-action="Index">Новости</a></li>
                     <li class="navbar-collapse collapse">
                         <a id="product_link">Продукция</a>
                         <ul id="product_list" class="nav navbar-nav collapse list">
@@ -78,16 +110,17 @@
         </header>
         <footer>
             <!--<p>&copy; 2016 Developed by Iundin Alexander and Velichko Michail</p>
-                <div>
-                    <p>&copy; 2016 Разработано Юндином Александром и Величко Михаилом</p>
-                </div>-->
+                -->
             <div>                
                 @await Html.PartialAsync("_SelectLanguagePartial")
             </div>
         </footer>
     </div>     
-    <div class="content container body-content">
+    <div class="content container body-content text">
         @RenderBody()
+        <div class="authors">
+            <p>&copy; 2016 Разработано Юндином Александром и Величко Михаилом</p>
+        </div>
     </div>
 
     <environment names="Development">

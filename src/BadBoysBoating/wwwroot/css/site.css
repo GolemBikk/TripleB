@@ -6,9 +6,48 @@
 }
 
 .body-content {    
-    width: 75%;
+    width: 77%;
     float: right;
 }
+
+.news-img {
+    width: 250px;
+    height: 150px;
+}
+
+.news-date {   
+    float: right;
+}
+.news-btn {
+    text-indent: 0px;
+    float: left;
+    width: 35%;
+    margin-top: 0%;
+}
+.news-footer {
+    width: 65%;
+    left: 290px;
+    position: absolute;
+    bottom: 20px;
+}
+.pager-btn-left {
+    text-indent: 0px;
+    float: left;
+}
+.pager-btn-right {
+    text-indent: 0px;
+    float: right;
+}
+
+.input-label {
+    font-weight:lighter;
+}
+
+.input-field {
+    width: 100%;
+    max-width: none;
+}
+
 .modal-body div{
     margin-bottom: 10px;
 }

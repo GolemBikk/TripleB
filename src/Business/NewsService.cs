@@ -101,7 +101,7 @@ namespace Business
                 }
 
             }
-            if (info != null && (result.Count > info.PageSize && result.Count < info.PageSize * (info.PageNumber - 1)))
+            if (info != null && result.Count > info.PageSize)
             {
                 int item_num = 1,
                     bottom_boart = info.PageSize * (info.PageNumber - 1),
@@ -117,7 +117,10 @@ namespace Business
                 }
                 return result_page;
             }
-            return result;
+            else
+            {
+                return result;
+            }           
         }
 
         /// <summary>
@@ -220,6 +223,13 @@ namespace Business
             {
                 return 1;
             }
+        }
+
+        public int GetPagesCount(int page_size)
+        {
+            double items_count = n_repository.GetAll().Count();
+            int total_pages = Convert.ToInt32(Math.Ceiling(items_count / page_size));
+            return total_pages;
         }
     }
 }

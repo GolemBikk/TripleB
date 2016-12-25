@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div id="hello">    
+@model List<NewsCollectionViewModel>
+<div>    
     <p>
         Bad Boys Boating - торговая площадка для всех, кому не равнодушно море.
         Сайт позволяет осуществлять сделки между пользователями такие как продажа и аренда катеров и яхт.
@@ -47,7 +48,30 @@
 </div>
 <div id="news">
     <h2>Наши последние новости</h2>
-    <div class="news_block">
-        <h3>Новостей пока нет</h3>
-    </div>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (NewsCollectionViewModel news in Model)
+            {
+                <div class="news-content media">
+                    @if (news.Image != null)
+                    {
+                        <div class="media-left">
+                            <img class="media-object news-img" src="data:image;base64,@Convert.ToBase64String(news.Image)">
+                        </div>
+                    }
+                    <div class="media-body">
+                        <h4 class="media-heading">@news.Title</h4>
+                        <p>@news.Discription</p>
+                    </div>
+                    <div class="news-footer">
+                        <h5 class="media-right news-date">@(news.Date.Day).@(news.Date.Month).@(news.Date.Year)</h5>
+                        <a id="fullnews_button" class="btn btn-primary news-btn" asp-area="" asp-controller="News" asp-action="FullNews" asp-route-news_id="@news.Id">Читать далее...</a>
+                    </div> 
+                </div>
+            }
+        }
+        else
+        { 
+            <h3>Новостей нет</h3>
+        }
 </div>
