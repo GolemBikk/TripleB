@@ -35,30 +35,30 @@
                     <form asp-action="AddNews" asp-controller="News" asp-anti-forgery="true" enctype="multipart/form-data" method="post">
                         <div class="validation" asp-validation-summary="ModelOnly" />
                         <div>
-                            <p>@Localizer["String1"]</p>
+                            <p>@Localizer["String2"]</p>
                         </div>
                         <div class="form-group">
-                            <label class="input-label" asp-for="Title">@Localizer["String1"]</label>
+                            <label class="input-label" asp-for="Title">@Localizer["String3"]</label>
                             <input type="text" class="form-control input-field" asp-for="Title" />
                             <span asp-validation-for="Title" />
                         </div>
                         <div class="form-group">                           
-                            <label class="input-label" asp-for="Discription">@Localizer["String1"]</label>
+                            <label class="input-label" asp-for="Discription">@Localizer["String4"]</label>
                             <textarea class="form-control input-field" asp-for="Discription" rows="3"></textarea>
                             <span asp-validation-for="Discription" />
                         </div>
                         <div class="form-group">
-                            <label class="input-label" asp-for="Text">@Localizer["String1"]</label>
+                            <label class="input-label" asp-for="Text">@Localizer["String5"]</label>
                             <textarea class="form-control input-field" asp-for="Text" rows="10"></textarea>
                             <span asp-validation-for="Text" />
                         </div>
                         <div>
-                            <label class="input-label">@Localizer["String1"]</label>
+                            <label class="input-label">@Localizer["String6"]</label>
                             <input type="file" name="files" />
                         </div>
                         <div class="form-group modal-footer">
-                            <input type="submit" value="@Localizer["String1"]" id='add' class="btn" />
-                            <a asp-area="" asp-controller="News" asp-action="Index" class="btn btn-default">@Localizer["String1"]</a>
+                            <input type="submit" value="@Localizer["String7"]" id='add' class="btn" />
+                            <a asp-area="" asp-controller="News" asp-action="Index" class="btn btn-default">@Localizer["String8"]</a>
                         </div> 
                     </form>
                 </div>
