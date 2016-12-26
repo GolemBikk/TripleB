@@ -1,8 +1,10 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = "News";
 }
 <div>
-    <h2>Здесь представлены новости сайта</h2>
+    <h2>@Localizer["String1"]</h2>
 </div>
 @if (Model != null && Model.Count > 0)
 {
@@ -21,7 +23,7 @@
             </div>
             <div class="news-footer">
                 <h5 class="media-right news-date">@(news.Date.Day).@(news.Date.Month).@(news.Date.Year)</h5>
-                <a id="fullnews_button" class="btn btn-primary news-btn" asp-area="" asp-controller="News" asp-action="FullNews" asp-route-news_id="@news.Id" asp-route-page_num="@ViewData["CurentPage"]">Читать далее...</a>
+                <a id="fullnews_button" class="btn btn-primary news-btn" asp-area="" asp-controller="News" asp-action="FullNews" asp-route-news_id="@news.Id" asp-route-page_num="@ViewData["CurentPage"]">@Localizer["String2"]</a>
             </div>
         </div>
     }
@@ -34,11 +36,11 @@
             {
                 if (page_num >= 2)
                 {
-                    <li><a class="pager-btn-left" asp-area="" asp-controller="News" asp-action="Index" asp-route-page_num="@(page_num - 1)">Назад</a></li>
+                    <li><a class="pager-btn-left" asp-area="" asp-controller="News" asp-action="Index" asp-route-page_num="@(page_num - 1)">@Localizer["String3"]</a></li>
                 }
                 if (page_num <= page_count - 1)
                 {
-                    <li><a class="pager-btn-right" asp-area="" asp-controller="News" asp-action="Index" asp-route-page_num="@(page_num + 1)">Вперёд</a></li>
+                    <li><a class="pager-btn-right" asp-area="" asp-controller="News" asp-action="Index" asp-route-page_num="@(page_num + 1)">@Localizer["String4"]</a></li>
                 }
             }
         }     
@@ -46,5 +48,5 @@
 }
 else
 {
-    <h3>Новостей нет</h3>
+    <h3>@Localizer["String5"]</h3>
 }

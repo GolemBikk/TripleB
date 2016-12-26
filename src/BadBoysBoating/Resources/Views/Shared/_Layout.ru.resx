@@ -118,45 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="String1" xml:space="preserve">
-    <value>About</value>
+    <value>Главная</value>
   </data>
   <data name="String10" xml:space="preserve">
-    <value>An individual approach, as a potential owner of the yacht, as well as to the owner has already taken place - all this experience, knowledge and capabilities of the company «Bad Boys Boating»</value>
+    <value>Отзывы</value>
   </data>
   <data name="String11" xml:space="preserve">
-    <value>History</value>
+    <value>Контакты</value>
   </data>
   <data name="String12" xml:space="preserve">
-    <value>In 1969, two young enterprising student Alexander Iundin and Velichko Michael initiated its first business - yacht charter. Ambition and passion for the sea stretched farther and wider than the first beginnings and the next step was the distribution of branded yachts in Italy. But almost immediately, in 1970, Michael and Alexander took a major step -Also service and distribution agreements are offered to design new models of his studio. Together with Amerglass, they decided to venture and built the first motor boat for mass production of glass fiber casing - AZ 43 Bali. This brought instant success. The company developed rapidly in the '70s and early' 80s focused on the two extreme segments - the smallest and, on the other hand, of long motor yachts. Having started in 1977 Azimut 32 Targa and five years later Azimut 105 Failaka in 1982, the company has made these two events significant for all other players in the market. The first step - one of the most successful small-sized boats, which attracted the attention of new customers, the second - the biggest serial yacht made of fiberglass - it entered the textbooks.</value>
+    <value>Выход</value>
   </data>
   <data name="String13" xml:space="preserve">
-    <value>In 1985, the Azimut, being already known yachts-building yard, gets far more famed and legendary shipyard Benetti, whose history dates back to 1873 and whose specialty has always been super-yachts. Paolo Vitelli and associates managed to infuse new ideas, having absorbed centuries-old tradition and experience of predecessors. All that is now seen as a reality and an integral part of modern yacht at the time happened thanks to innovative solutions Azimut-Benetti - large frameless window construction, electrically driven seat trim and a key approach to the design of the cabins - it's revolution, emerged from under the hand of Paolo Vitelli .</value>
+    <value>Вход</value>
   </data>
   <data name="String14" xml:space="preserve">
-    <value>Since the late nineties, with the acquisition of new shipyards in Fano, the reconstruction of the plant Benetti in Viareggio, as well as the construction of new shipyards in the vicinity of Turin Avigliana group Azimut-Benettivyshla group of leaders in the construction of yachts and megayachts. The long-term reputation, the constant search, innovation, development and investment in the business, increasing production capacity, optimization of production and, finally, the most demanding industrial control and creative self-giving is not the first season to a number of the company held in the highest position among the manufacturers of luxury yachts category.</value>
+    <value>Регистрация</value>
+  </data>
+  <data name="String15" xml:space="preserve">
+    <value>Разработано Юндином Александром и Величко Михаилом</value>
+  </data>
+  <data name="String16" xml:space="preserve">
+    <value>Мой кабинет</value>
   </data>
   <data name="String2" xml:space="preserve">
-    <value>Company «Bad Boys Boating», founded in 1998, is a leader in the yachting segment of the market.</value>
+    <value>Новости</value>
   </data>
   <data name="String3" xml:space="preserve">
-    <value>«Bad Boys Boating» is the exclusive and official representative of the Russian Federation on the territory of the world's known yacht brands</value>
+    <value>Продукция</value>
   </data>
   <data name="String4" xml:space="preserve">
-    <value>Shipyard Sessa Marine (Italy)</value>
+    <value>Продажа</value>
   </data>
   <data name="String5" xml:space="preserve">
-    <value>Apreamare shipyard (Italy)</value>
+    <value>Аренда</value>
   </data>
   <data name="String6" xml:space="preserve">
-    <value>Shipyard Boston Whaler (America)</value>
+    <value>О нас</value>
   </data>
   <data name="String7" xml:space="preserve">
-    <value>Shipyard Chris-Craft (America)</value>
+    <value>История</value>
   </data>
   <data name="String8" xml:space="preserve">
-    <value>Shipyard Williams Tenders (England)</value>
+    <value>Услуги</value>
   </data>
   <data name="String9" xml:space="preserve">
-    <value>- concern Ferretti Group. including the shipyard Ferretti Yachts, Pershing, Riva, Mochi Craft, Custom Line, CRN (Italy)</value>
+    <value>Награды</value>
   </data>
 </root>

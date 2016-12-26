@@ -18,7 +18,7 @@
     <form id="selectLanguage" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post" role="form">
         <div class="input-group">
             <label class="input-group-addon my-leng" asp-for="@requestCulture.RequestCulture.UICulture.Name">
-                @Localizer["Language"]:
+                @Localizer["String1"]:
             </label>
             <select name="culture" class="form-control" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems"></select>
             <span class="input-group-btn">

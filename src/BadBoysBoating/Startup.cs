@@ -55,11 +55,11 @@ namespace BadBoysBoating
         {
             var supportedCultures = new[]
             {
-                new CultureInfo("ru"),
-                new CultureInfo("en")
+                new CultureInfo("ru-RU"),
+                new CultureInfo("en-US")
             };
 
-            opts.DefaultRequestCulture = new RequestCulture("ru");
+            opts.DefaultRequestCulture = new RequestCulture("ru-RU");
             // Formatting numbers, dates, etc.
             opts.SupportedCultures = supportedCultures;
             // UI strings that we have localized.
