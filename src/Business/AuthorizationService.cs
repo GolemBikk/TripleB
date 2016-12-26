@@ -147,6 +147,12 @@ namespace Business
             }
         }
 
+        public List<AccountViewModel> GetAllAccounts()
+        {
+            List<AccountViewModel> result = new List<AccountViewModel>();
+            return result;
+        }
+
         /// <summary>
         /// Проверка наличия аккаунта с заданным логином
         /// </summary>

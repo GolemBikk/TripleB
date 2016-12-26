@@ -8,6 +8,7 @@ using Business;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Localization;
+using System.Security.Claims;
 
 namespace BadBoysBoating.Controllers
 {
@@ -119,6 +120,7 @@ namespace BadBoysBoating.Controllers
         {
             if (User.Identity.Name != null)
             {
+                ViewData["Role"] = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
                 return User.Identity.Name;
             }
             else

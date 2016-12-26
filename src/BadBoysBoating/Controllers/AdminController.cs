@@ -15,16 +15,22 @@ namespace BadBoysBoating.Controllers
     public class AdminController : Controller
     {
         [Authorize(Roles = "admin")]
-        public IActionResult Index()
+        public IActionResult Accounts()
         {
-            //string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-            return View();
+            ViewData["StyleSheet"] = "Accounts";
+            ViewData["Login"] = CheckCookies();
+            AuthorizationService service = new AuthorizationService();
+            List<AccountViewModel> accounts = service.GetAllAccounts();
+            return View(accounts);
         }
 
-        public IActionResult News(int page_num = 1)
+        [Authorize(Roles = "admin")]
+        public IActionResult News()
         {
             NewsService service = new NewsService();
-            List<NewsCollectionViewModel> news = service.GetAllNews(new PageInfo { PageNumber = page_num, PageSize = 10 });
+            List<NewsCollectionViewModel> news = service.GetAllNews(new PageInfo { PageNumber = 1, PageSize = 100000 });
+            ViewData["StyleSheet"] = "News";
+            ViewData["Login"] = CheckCookies();
             return View(news);
         }
 
@@ -50,6 +56,19 @@ namespace BadBoysBoating.Controllers
             );
 
             return LocalRedirect(returnUrl);
+        }
+
+        private string CheckCookies()
+        {
+            if (User.Identity.Name != null)
+            {
+                ViewData["Role"] = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+                return User.Identity.Name;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

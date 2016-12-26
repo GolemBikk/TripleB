@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BadBoysBoating.Controllers
 {
@@ -26,6 +28,32 @@ namespace BadBoysBoating.Controllers
             BoatService service = new BoatService();
             BoatViewModel model = service.GetBoatInfo(id);
             return View(model);
+        }
+
+        public IActionResult Sale(int page_num = 1)
+        {
+            ViewData["StyleSheet"] = "About";
+            ViewData["Login"] = CheckCookies();
+            BoatService service = new BoatService();
+            List<BoatCollectionViewModel> boats = service.GetAllBoat(new PageInfo { PageNumber = page_num, PageSize = 9 }, "buy");
+            return View(boats);
+        }
+
+        public IActionResult Rent(int page_num = 1)
+        {
+            ViewData["StyleSheet"] = "About";
+            ViewData["Login"] = CheckCookies();
+            BoatService service = new BoatService();
+            List<BoatCollectionViewModel> boats = service.GetAllBoat(new PageInfo { PageNumber = page_num, PageSize = 9 }, "rent");
+            return View(boats);
+        }
+
+        [Authorize(Roles = "admin, client, customer")]
+        public IActionResult Product(int boat_id)
+        {
+            BoatService service = new BoatService();
+            BoatViewModel boat = service.GetBoatInfo(boat_id);
+            return View(boat);
         }
 
         [HttpPost]
@@ -54,7 +82,7 @@ namespace BadBoysBoating.Controllers
                 int code = b_service.AddBoat(model);
                 switch (code)
                 {
-                    case 0: return RedirectToAction("Products", "User");
+                    case 0: return RedirectToAction("Index", "User");
                     case 1:
                         {
                             ModelState.AddModelError("", "Ошибка при добавлении записи");
@@ -80,7 +108,7 @@ namespace BadBoysBoating.Controllers
                 int code = service.EditBoat(model);
                 switch (code)
                 {
-                    case 0: return RedirectToAction("Products", "User");
+                    case 0: return RedirectToAction("Index", "User");
                     case 1:
                         {
                             ModelState.AddModelError("", "Ошибка при редактировании записи");
@@ -112,6 +140,19 @@ namespace BadBoysBoating.Controllers
             );
 
             return LocalRedirect(returnUrl);
+        }
+
+        private string CheckCookies()
+        {
+            if (User.Identity.Name != null)
+            {
+                ViewData["Role"] = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+                return User.Identity.Name;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

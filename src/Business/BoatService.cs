@@ -191,11 +191,11 @@ namespace Business
                     Id = item.Id,
                     BoatModel = bm_repository.GetById(item.ModelId).Name,
                     Image = i_repository.GetAllByOwnerId(item.Id).First().Content,
-                    Discription = item.Description
+                    Discription = ((item.Description.Length > 100) ? item.Description.Substring(0, 100) + "..." : item.Description),
                 });
             }
-            if (info != null && (result.Count > info.PageSize && result.Count < info.PageSize * (info.PageNumber - 1)))
-            {
+            if(info.PageSize < result.Count)
+            { 
                 int item_num = 1,
                     bottom_boart = info.PageSize * (info.PageNumber - 1),
                     top_boart = info.PageSize * info.PageNumber;
@@ -231,7 +231,7 @@ namespace Business
                     Id = item.Id,
                     BoatModel = model_name,
                     Image = images.First().Content,
-                    Discription = (item.Description.Length > 50) ? item.Description.Substring(0, 50) : item.Description,
+                    Discription = ((item.Description.Length > 100) ? item.Description.Substring(0, 100) + "..." : item.Description),
                 });
             }
             return result;

@@ -8,39 +8,42 @@
     <h2>@Localizer["String1"]</h2>
 </div>
 <div id="products">
-    <ul class="thumbnails">
-        @foreach (NewsCollectionViewModel item in Model)
-        {
-            <div class="hero-unit thumbnail">
-                <h2>@item.Title</h2>
-                @if (item.Image != null)
+    <div class="panel panel-default">
+        <div class="panel-heading">Новости</div>
+        <table class="table table-news">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Название</th>
+                    <th>Дата</th>
+                    <th rowspan="3"><a class="btn btn-primary btn-large my-btn" asp-controller="News" asp-action="AddNews">Добавитть новость</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (NewsCollectionViewModel item in Model)
                 {
-                    <img src="data:image;base64,@Convert.ToBase64String(item.Image)" alt="">
+                    <tr>
+                        <th>@item.Id</th>
+                        <th>@item.Title</th>
+                        <th>@item.Date</th>
+                        <th>
+                            <a class="btn btn-primary btn-large my-btn" asp-controller="News" asp-action="EditNews" asp-route-news_id="@item.Id">
+                                @Localizer["String2"]
+                            </a>
+                        </th>
+                        <th>
+                            <a class="btn btn-primary btn-large my-btn" asp-controller="News" asp-action="FullNews" asp-route-news_id="@item.Id">
+                                @Localizer["String3"]
+                            </a>
+                        </th>
+                        <th>
+                            <a class="btn btn-primary btn-large my-btn" asp-controller="News" asp-action="DeleteNews" asp-route-news_id="@item.Id">
+                                @Localizer["String4"]
+                            </a>
+                        </th>
+                    </tr>
                 }
-                <p>@item.Discription</p>
-                <p>
-                    <a class="btn btn-primary btn-large" asp-controller="News" asp-action="EditNews" asp-route-news_id="@item.Id">
-                        @Localizer["String2"]
-                    </a>
-                    <a class="btn btn-primary btn-large" asp-controller="News" asp-action="FullNews" asp-route-news_id="@item.Id">
-                        @Localizer["String3"]
-                    </a>
-                    <a class="btn btn-primary btn-large" asp-controller="News" asp-action="DeleteNews" asp-route-news_id="@item.Id">
-                        @Localizer["String4"]
-                    </a>
-                </p>
-            </div>
-            <!--li class="span4">
-                <div class="thumbnail">
-                    @if (item.Image != null)
-                    {
-                        <img src="data:image;base64,@Convert.ToBase64String(item.Image)" alt="">
-                    }
-                    <h3>@item.Title</h3>
-                    <p>@item.Discription</p>
-                    <a class="btn btn-primary" asp-controller="Boat" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
-                </div>
-            </li-->
-        }
-    </ul>
+            </tbody>
+        </table>
+    </div>
 </div>

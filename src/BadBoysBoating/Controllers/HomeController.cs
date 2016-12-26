@@ -7,6 +7,7 @@ using Business;
 using ViewModels;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace BadBoysBoating.Controllers
 {
@@ -21,24 +22,17 @@ namespace BadBoysBoating.Controllers
             n_service = new NewsService();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["StyleSheet"] = "Index";
             ViewData["Login"] = CheckCookies();
             List<NewsCollectionViewModel> model = n_service.GetAllNews(new PageInfo { PageNumber = 1, PageSize = 5});
+            if (ViewData["Login"].ToString().Length > 0 && ViewData["Role"].ToString().Equals("admin"))
+            {
+                return RedirectToAction("Index", "User");
+            }
             return View(model);
-        }       
-
-        public IActionResult Rent(int page_num = 1)
-        {
-            List<BoatCollectionViewModel> boats = b_service.GetAllBoat(new PageInfo { PageNumber = page_num, PageSize = 9 }, "rent");
-            return View(boats);
-        }
-
-        public IActionResult Sale()
-        {
-            return View();
-        }
+        }               
 
         public IActionResult Product(int boat_id)
         {
@@ -81,6 +75,7 @@ namespace BadBoysBoating.Controllers
         {
             if (User.Identity.Name != null)
             {
+                ViewData["Role"] = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
                 return User.Identity.Name;
             }
             else

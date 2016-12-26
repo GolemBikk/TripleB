@@ -72,10 +72,17 @@
 
 .profile-button {
     margin-top: 5%;
-    margin-left -4%;
+    margin-left: -4%;
     text-indent: 0px;
 }
 
+.boat {
+    margin-bottom: 30px;
+}
 
+.boat-item div img {
+    width: 100%;
+    margin-left: -20px;
+}
 
 

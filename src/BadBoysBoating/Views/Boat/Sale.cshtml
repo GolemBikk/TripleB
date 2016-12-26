@@ -1,9 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Sale";
 }
-<div>
+<div class="page-header">
     <h2>Прделожения продажи на текущий момент</h2>
 </div>
-<div id="sales">
-
+<div id="rents">
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="row boat">
+            @foreach (BoatCollectionViewModel item in Model)
+            {
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="data:image;base64,@Convert.ToBase64String(item.Image)" alt="">
+                        <div class="caption">
+                            <h3>@item.BoatModel</h3>
+                            <p>@item.Discription</p>
+                            <p>
+                                <a style="color: white">_</a>
+                                <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Product" asp-route-boat_id="@item.Id">Просмотреть</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
 </div>

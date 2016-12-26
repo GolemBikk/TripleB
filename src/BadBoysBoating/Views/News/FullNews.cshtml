@@ -25,7 +25,14 @@
     <div>
         <h4 class="news-date">@(Model.Date.Day).@(Model.Date.Month).@(Model.Date.Year)</h4>
         <ul class="pager">
-            <li><a class="pager-btn-left" asp-area="" asp-controller="News" asp-action="Index" asp-route-page_num="@ViewData["CurentPage"].ToString()">@Localizer["String1"]</a></li>
+            @if (ViewData["Login"].ToString().Length > 0 && ViewData["Role"].ToString().Equals("admin"))
+            {
+                <li><a class="pager-btn-left" asp-area="" asp-controller="Admin" asp-action="News">@Localizer["String1"]</a></li>
+            }
+            else
+            {
+                <li><a class="pager-btn-left" asp-area="" asp-controller="News" asp-action="Index" asp-route-page_num="@ViewData["CurentPage"].ToString()">@Localizer["String1"]</a></li>
+            }            
         </ul>
     </div>  
 </div>

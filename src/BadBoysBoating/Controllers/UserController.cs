@@ -55,16 +55,7 @@ namespace BadBoysBoating.Controllers
                     break;
             }
             return View(recalls);
-        }
-
-        [Authorize(Roles = "customer")]
-        public IActionResult Products(int page_num = 1)
-        {
-            InitializeAccountId();
-            BoatService service = new BoatService();
-            List<BoatCollectionViewModel> boats = service.GetUsersBoat(account_id);
-            return View(boats);
-        }
+        }        
 
         private void InitializeAccountId()
         {
@@ -89,6 +80,7 @@ namespace BadBoysBoating.Controllers
         {
             if (User.Identity.Name != null)
             {
+                ViewData["Role"] = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
                 return User.Identity.Name;
             }
             else

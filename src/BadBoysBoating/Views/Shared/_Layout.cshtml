@@ -71,9 +71,6 @@
 </head>
 <body>       
     <div id="side_container">
-        <!--<div id="menu_button" class="right carousel-control">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        </div>-->
         <header>
             <div id="logotype">
                 <a asp-area="" asp-controller="Home" asp-action="Index">
@@ -82,29 +79,47 @@
             </div>
             <div id="navigation_menu" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["String1"]</a></li>
                     @if (ViewData["Login"].ToString().Length > 0)
                     {
-                        <li><a asp-area="" asp-controller="User" asp-action="Index">@Localizer["String16"]</a></li>
+                        @if (!ViewData["Role"].ToString().Equals("admin"))
+                        {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["String1"]</a></li>
+                        }
                     }
-                    <li><a asp-area="" asp-controller="News" asp-action="Index">@Localizer["String2"]</a></li>
-                    <li class="navbar-collapse collapse">
-                        <a id="product_link">@Localizer["String3"]</a>
-                        <ul id="product_list" class="nav navbar-nav collapse list">
-                            <li><a asp-area="" asp-controller="Home" asp-action="Sale">@Localizer["String4"]</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Rent">@Localizer["String5"]</a></li>
-                        </ul>
-                    </li>
-                    <li class="navbar-collapse collapse">
-                        <a id="about_link">@Localizer["String6"]</a>
-                        <ul id="about_list" class="nav navbar-nav collapse list">
-                            <li><a href="~/Home/About#history">@Localizer["String7"]</a></li>
-                            <li><a>@Localizer["String8"]</a></li>
-                            <li><a>@Localizer["String9"]</a></li>
-                            <li><a>@Localizer["String10"]</a></li>
-                        </ul>
-                    </li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["String11"]</a></li>
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["String1"]</a></li>
+                    }
+                    @if (ViewData["Login"].ToString().Length > 0)
+                    {
+                        <li><a asp-area="" asp-controller="User" asp-action="Index">@Localizer["String16"]</a></li>                       
+                    }                                           
+                    @if (ViewData["Login"].ToString().Length > 0 && ViewData["Role"].ToString().Equals("admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Admin" asp-action="Accounts">Пользователи</a></li>
+                        <li><a asp-area="" asp-controller="Admin" asp-action="News">@Localizer["String2"]</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="News" asp-action="Index">@Localizer["String2"]</a></li>
+                        <li class="navbar-collapse collapse">
+                            <a id="product_link">@Localizer["String3"]</a>
+                            <ul id="product_list" class="nav navbar-nav collapse list">
+                                <li><a asp-area="" asp-controller="Boat" asp-action="Sale">@Localizer["String4"]</a></li>
+                                <li><a asp-area="" asp-controller="Boat" asp-action="Rent">@Localizer["String5"]</a></li>
+                            </ul>
+                        </li>
+                        <li class="navbar-collapse collapse">
+                            <a id="about_link">@Localizer["String6"]</a>
+                            <ul id="about_list" class="nav navbar-nav collapse list">
+                                <li><a href="~/Home/About#history">@Localizer["String7"]</a></li>
+                                <li><a>@Localizer["String8"]</a></li>
+                                <li><a>@Localizer["String9"]</a></li>
+                                <li><a>@Localizer["String10"]</a></li>
+                            </ul>
+                        </li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["String11"]</a></li>
+                    }                    
                 </ul>
             </div>
             <div id="registration_menu" class="navbar-collapse collapse">

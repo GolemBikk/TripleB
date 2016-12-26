@@ -1,0 +1,39 @@
+﻿@model List<AccountViewModel>
+<div>
+    <h2>Пользователи</h2>
+</div>
+<div id="products">
+    <div class="panel panel-default">
+        <div class="panel-heading">Новости</div>
+        <table class="table table-news">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Логин</th>
+                    <th>Эл. почта</th>
+                    <th>Имя и фамилия</th>
+                    <th>Тип аккаунта</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (AccountViewModel item in Model)
+                {
+                    <tr>
+                        <th>@item.Id</th>
+                        <th>@item.Login</th>
+                        <th>@item.Email</th>
+                        <th>@item.Username</th>
+                        <th>@item.AccountType</th>
+                        <th>@item.Status</th>
+                        <th>
+                            <a class="btn btn-primary btn-large my-btn" asp-controller="News" asp-action="DeleteNews" asp-route-news_id="@item.Id">
+                                Забанить
+                            </a>
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
