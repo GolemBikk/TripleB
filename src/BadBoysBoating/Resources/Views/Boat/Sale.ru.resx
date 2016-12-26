@@ -118,24 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="String1" xml:space="preserve">
-    <value>Ваши предложения</value>
+    <value>Прделожения продажи на текущий момент</value>
   </data>
   <data name="String2" xml:space="preserve">
-    <value>Редактировать</value>
-  </data>
-  <data name="String3" xml:space="preserve">
-    <value>Просмотр</value>
-  </data>
-  <data name="String4" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
-  <data name="String5" xml:space="preserve">
-    <value>Название</value>
-  </data>
-  <data name="String6" xml:space="preserve">
-    <value>Дата</value>
-  </data>
-  <data name="String7" xml:space="preserve">
-    <value>Добавитть новость</value>
+    <value>Просмотреть</value>
   </data>
 </root>

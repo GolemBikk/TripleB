@@ -141,6 +141,9 @@
   <data name="String16" xml:space="preserve">
     <value>My account</value>
   </data>
+  <data name="String17" xml:space="preserve">
+    <value>Users</value>
+  </data>
   <data name="String2" xml:space="preserve">
     <value>News</value>
   </data>

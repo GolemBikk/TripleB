@@ -1,6 +1,6 @@
 ﻿@model List<AccountViewModel>
 <div>
-    <h2>Пользователи</h2>
+    <h2>@Localizer["String1"]</h2>
 </div>
 <div id="products">
     <div class="panel panel-default">
@@ -9,11 +9,11 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Логин</th>
-                    <th>Эл. почта</th>
-                    <th>Имя и фамилия</th>
-                    <th>Тип аккаунта</th>
-                    <th>Статус</th>
+                    <th>@Localizer["String2"]</th>
+                    <th>@Localizer["String3"]</th>
+                    <th>@Localizer["String4"]</th>
+                    <th>@Localizer["String5"]</th>
+                    <th>@Localizer["String6"]</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
                         <th>@item.Status</th>
                         <th>
                             <a class="btn btn-primary btn-large my-btn" asp-controller="News" asp-action="DeleteNews" asp-route-news_id="@item.Id">
-                                Забанить
+                                @Localizer["String7"]
                             </a>
                         </th>
                     </tr>

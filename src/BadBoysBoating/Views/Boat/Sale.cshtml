@@ -2,7 +2,7 @@
     ViewData["Title"] = "Sale";
 }
 <div class="page-header">
-    <h2>Прделожения продажи на текущий момент</h2>
+    <h2>@Localizer["String1"]</h2>
 </div>
 <div id="rents">
     @if (Model != null && Model.Count > 0)
@@ -18,7 +18,7 @@
                             <p>@item.Discription</p>
                             <p>
                                 <a style="color: white">_</a>
-                                <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Product" asp-route-boat_id="@item.Id">Просмотреть</a>
+                                <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Product" asp-route-boat_id="@item.Id">@Localizer["String2"]</a>
                             </p>
                         </div>
                     </div>

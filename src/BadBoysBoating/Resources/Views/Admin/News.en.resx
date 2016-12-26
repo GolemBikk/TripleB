@@ -129,4 +129,13 @@
   <data name="String4" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="String5" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>Add news</value>
+  </data>
 </root>

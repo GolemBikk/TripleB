@@ -4,43 +4,43 @@
 @model AccountViewModel
 <div id="user_description">
     <div class="page-header">
-        <h2>Ваша информация</h2>
+        <h2>@Localizer["String1"]</h2>
     </div>
     <div id="profile">
         <div id="avatar">
             <img src="~/images/profile.jpg" />
         </div>
         <div class="user_information">
-            <p> Имя: @Model.Username</p>
-            <p> Логин: @Model.Login</p>
-            <p>Адресс: @Model.Email</p>
-            <p>Тип аккаунта: @Model.AccountType</p>
+            <p> @Localizer["String2"]: @Model.Username</p>
+            <p> @Localizer["String3"]: @Model.Login</p>
+            <p>@Localizer["String4"]: @Model.Email</p>
+            <p>@Localizer["String5"]: @Model.AccountType</p>
             <a style="color: white">_</a>
-            <a asp-area="" class="btn btn-primary profile-button" asp-controller="User" asp-action="Bids" asp-route-recalls_type="inbox">Сменить пароль</a>
+            <a asp-area="" class="btn btn-primary profile-button" asp-controller="User" asp-action="Bids" asp-route-recalls_type="inbox">@Localizer["String6"]</a>
         </div>        
         @if (Model.AccountType.Equals("customer"))
         {
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#" id="recall-btn" class="my-btn">Входящие заявки</a>
+                    <a href="#" id="recall-btn" class="my-btn">@Localizer["String7"]</a>
                 </li>
                 <li>
-                    <a href="#" id="product-btn" class="my-btn">Мои предложения</a>
+                    <a href="#" id="product-btn" class="my-btn">@Localizer["String8"]</a>
                 </li>
             </ul>
             <div id="recalls">
                 @if (Model.Recalls != null && Model.Recalls.Count > 0)
                 {
-                    <p>Тут будут заявки</p>
+                    <p>@Localizer["String9"]</p>
                 }
                 else
                 { 
                     <p></p>
-                    <p>К сожалению, вам поступило ни одной заявки</p>
+                    <p>@Localizer["String10"]</p>
                 }
             </div>
             <div id="products" style="display:none">
-                <a asp-area="" class="btn btn-primary profile-button" asp-controller="Boat" asp-action="Add">Добавить судно</a>
+                <a asp-area="" class="btn btn-primary profile-button" asp-controller="Boat" asp-action="Add">@Localizer["String11"]</a>
                 <p></p>
                 @if (Model.Boats != null && Model.Boats.Count > 0)
                 {
@@ -55,8 +55,8 @@
                                             <p>@item.Discription</p>
                                             <p>
                                                 <a style="color: white">_</a>
-                                                <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Product" asp-route-boat_id="@item.Id">Просмотреть</a>
-                                                <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Edit" asp-route-boat_id="@item.Id">Редактировать</a>
+                                                <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Product" asp-route-boat_id="@item.Id">@Localizer["String12"]</a>
+                                                <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Edit" asp-route-boat_id="@item.Id">@Localizer["String13"]</a>
                                             </p>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                 else
                 {
                     <p></p>
-                    <p>Добавьте свою первую лодку!</p>
+                    <p>@Localizer["String14"]</p>
                 }
             </div>
             <script src="~/js/profile.js"></script>

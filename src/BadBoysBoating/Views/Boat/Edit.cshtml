@@ -27,46 +27,46 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Добавление нового судна</h2>
+                    <h2>@Localizer["String1"]</h2>
                 </div>
                 <div class="modal-body">
                     <form asp-action="Edit" asp-controller="Boat" asp-anti-forgery="true">
                         <div class="validation" asp-validation-summary="ModelOnly" />
                         <div>
-                            <p>Введите свои данные:</p>
+                            <p>@Localizer["String2"]</p>
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Speed">Скорость</label>
+                            <label class="input-group-addon" asp-for="Speed">@Localizer["String3"]</label>
                             <input type="text" class="form-control" asp-for="Speed" />
                             <span asp-validation-for="Speed" />
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Cost">Цена</label>
+                            <label class="input-group-addon" asp-for="Cost">@Localizer["String4"]</label>
                             <input type="text" class="form-control" asp-for="Cost" />
                             <span asp-validation-for="Cost" />
                         </div>
                         <div class="input-group">
-                            <label class="input-group-addon" asp-for="Type">Выберите тип судна</label>
+                            <label class="input-group-addon" asp-for="Type">@Localizer["String5"]</label>
                             <select asp-for="Type" class="form-control">
                                 <option value="yacht">Яхта</option>
                                 <option value="boat">Катер</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label class="input-group-addon" asp-for="Kind">Выберите операцию</label>
+                            <label class="input-group-addon" asp-for="Kind">@Localizer["String6"]</label>
                             <select asp-for="Kind" class="form-control">
                                 <option value="buy">Продажа</option>
                                 <option value="rent">Аренда</option>
                             </select>
                         </div>
                         <div class="input-group form-group">
-                            <label class="input-group-addon" asp-for="Description">Описание</label>
+                            <label class="input-group-addon" asp-for="Description">@Localizer["String7"]</label>
                             <textarea class="form-control" asp-for="Description" rows="10"></textarea>
                             <span asp-validation-for="Description" />
                         </div>
                         <div class="form-group modal-footer">
-                            <input type="submit" value="Изменить" id='add' class="btn" />
-                            <a asp-area="" asp-controller="User" asp-action="Index" class="btn btn-default">Отмена</a>
+                            <input type="submit" value="@Localizer["String8"]" id='add' class="btn" />
+                            <a asp-area="" asp-controller="User" asp-action="Index" class="btn btn-default">@Localizer["String9"]</a>
                         </div>
                     </form>
                 </div>

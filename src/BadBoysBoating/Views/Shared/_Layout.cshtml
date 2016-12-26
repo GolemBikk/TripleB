@@ -96,7 +96,7 @@
                     }                                           
                     @if (ViewData["Login"].ToString().Length > 0 && ViewData["Role"].ToString().Equals("admin"))
                     {
-                        <li><a asp-area="" asp-controller="Admin" asp-action="Accounts">Пользователи</a></li>
+                        <li><a asp-area="" asp-controller="Admin" asp-action="Accounts">@Localizer["String17"]</a></li>
                         <li><a asp-area="" asp-controller="Admin" asp-action="News">@Localizer["String2"]</a></li>
                     }
                     else
