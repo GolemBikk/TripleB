@@ -32,7 +32,6 @@
 
 #avatar {
     float: left;
-    padding: 5px;
     width: 30%;
 }
 
@@ -42,8 +41,14 @@
 
 .user_information {
     float:right;
-    padding-left:20px;
-    width: 70%;
+    padding-left:40px;
+    width: 60%;
+    margin-bottom: 40px;
+}
+
+.user_information p{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
 }
 
 #table_column_first {
@@ -62,10 +67,15 @@
 }
 
 #user_description {
-    font-size: 25px;
-    text-align: justify;
-    color: darkorange;
-    margin-bottom: 15px;
+    margin-top: -30px;
 }
+
+.profile-button {
+    margin-top: 5%;
+    margin-left -4%;
+    text-indent: 0px;
+}
+
+
 
 

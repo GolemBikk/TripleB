@@ -219,7 +219,7 @@ namespace Business
         /// <param name="info"></param>
         /// <param name="owner_id"></param>
         /// <returns></returns>
-        public List<BoatCollectionViewModel> GetUsersBoat(PageInfo info, int owner_id)
+        public List<BoatCollectionViewModel> GetUsersBoat(int owner_id)
         {
             List<BoatCollectionViewModel> result = new List<BoatCollectionViewModel>();
             foreach (Boat item in b_repository.Boat_GetByUserId(owner_id))
@@ -231,24 +231,8 @@ namespace Business
                     Id = item.Id,
                     BoatModel = model_name,
                     Image = images.First().Content,
-                    Discription = item.Description
+                    Discription = (item.Description.Length > 50) ? item.Description.Substring(0, 50) : item.Description,
                 });
-            }
-            if (info != null && (result.Count > info.PageSize && result.Count < info.PageSize * (info.PageNumber - 1)))
-            {
-                int item_num = 1,
-                    bottom_boart = info.PageSize * (info.PageNumber - 1),
-                    top_boart = info.PageSize * info.PageNumber;
-                List<BoatCollectionViewModel> result_page = new List<BoatCollectionViewModel>();
-                foreach (BoatCollectionViewModel item in result)
-                {
-                    if (item_num > bottom_boart && item_num <= top_boart)
-                    {
-                        result_page.Add(item);
-                    }
-                    item_num++;
-                }
-                return result_page;
             }
             return result;
         }

@@ -2,32 +2,71 @@
     ViewData["Title"] = "Profile";
 }
 @model AccountViewModel
-<div>
-    <h2>Ваша информация</h2>
-</div>
-<div id="profile">
-    <p> Имя: @Model.Username</p>
-    <p>
-        Текущий статус: 
-        @if (Model.Status)
+<div id="user_description">
+    <div class="page-header">
+        <h2>Ваша информация</h2>
+    </div>
+    <div id="profile">
+        <div id="avatar">
+            <img src="~/images/profile.jpg" />
+        </div>
+        <div class="user_information">
+            <p> Имя: @Model.Username</p>
+            <p> Логин: @Model.Login</p>
+            <p>Адресс: @Model.Email</p>
+            <p>Тип аккаунта: @Model.AccountType</p>
+            <a asp-area="" class="btn btn-primary profile-button" asp-controller="User" asp-action="Bids" asp-route-recalls_type="inbox">Сменить пароль</a>
+        </div>        
+        @if (Model.AccountType.Equals("customer"))
         {
-            <p>Активен</p>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#" id="recall-btn" class="my-btn">Входящие заявки</a>
+                </li>
+                <li>
+                    <a href="#" id="product-btn" class="my-btn">Мои предложения</a>
+                </li>
+            </ul>
+            <div id="recalls">
+                @if (Model.Recalls != null && Model.Recalls.Count > 0)
+                {
+                    <p>Тут будут заявки</p>
+                }
+                else
+                { 
+                    <p></p>
+                    <p>К сожалению, вам поступило ни одной заявки</p>
+                }
+            </div>
+            <div id="products" style="display:none">
+                <a asp-area="" class="btn btn-primary profile-button" asp-controller="Boat" asp-action="Add">Добавить судно</a>
+                <p></p>
+                @if (Model.Boats != null && Model.Boats.Count > 0)
+                {
+                    <div>
+                        <ul class="thumbnails">
+                            @foreach (BoatCollectionViewModel item in Model.Boats)
+                            {
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <img src="data:image;base64,@Convert.ToBase64String(item.Image)" alt="">
+                                        <h3>@item.BoatModel</h3>
+                                        <p>@item.Discription</p>
+                                        <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Product" asp-route-boat_id="@item.Id">Просмотреть</a>
+                                        <a asp-area="" class="btn btn-primary my-btn" asp-controller="Boat" asp-action="Edit" asp-route-boat_id="@item.Id">Редактироваать</a>
+                                    </div>
+                                </li>                            
+                        }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <p></p>
+                    <p>Добавьте свою первую лодку!</p>
+                }
+            </div>
+            <script src="~/js/profile.js"></script>
         }
-        else
-        {
-            <p>Заблокирован</p>
-        }
-    </p>
-    <p> 
-        Логин: @Model.Login
-    </p>
-    <p>Тип аккаунта: @Model.AccountType</p>
-    <p>Адресс: @Model.Email</p>
-    <a asp-area="" class="btn btn-primary" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="outbox">Исходящие заявки</a>
-    @if (Model.AccountType.Equals("customer"))
-    {
-        <a asp-area="" class="btn btn-primary" asp-controller="Boat" asp-action="Add">Добавить судно</a>
-        <a asp-area="" class="btn btn-primary" asp-controller="User" asp-action="Bids" asp-route-[recalls_type]="inbox">Входящие заявки</a>
-        <a asp-area="" class="btn btn-primary" asp-controller="User" asp-action="Products">Мои предложения</a>
-    }   
+    </div>
 </div>
